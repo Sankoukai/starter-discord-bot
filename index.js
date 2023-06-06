@@ -32,7 +32,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 let tt = (await discord_api.post(`/users/@me/channels`,{
         recipient_id: interaction.guild.members
       })).data
-console.log(`ALORS ? ${tt}`)
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
@@ -40,7 +39,7 @@ console.log(`ALORS ? ${tt}`)
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${test.cache.members}!`,
+          content: `Yo ${tt}!`,
         },
       });
     }
