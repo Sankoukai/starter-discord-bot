@@ -39,7 +39,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Nombres de membres sur SFF: ${util.inspect(tt.data)}`,
+          		content: `Nombres de membres sur SFF: ${tt.data}`,
         		},
       		});
 	}
