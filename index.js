@@ -35,12 +35,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'test'){
 	try{
 	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}/members`))
-	   let size = tt.data.map(test => test.user).size
 	      
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Yo ${size}!`,
+          		content: `Yo ${tt.data.user}!`,
         		},
       		});
 	}
