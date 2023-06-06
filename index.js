@@ -17,7 +17,7 @@ const app = express();
 
 const discord_api = axios.create({
   baseURL: 'https://discord.com/api/',
-  timeout: 30000,
+  timeout: 3000,
   headers: {
 	"Access-Control-Allow-Origin": "*",
 	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
@@ -34,7 +34,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
 	try{
-	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}/members`))
+	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
 	      
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
