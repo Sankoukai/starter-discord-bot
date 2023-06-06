@@ -39,6 +39,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 		flags: 64,
+		public_flags: 64,
        		 data: {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,	
         		},
