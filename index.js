@@ -34,7 +34,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
 	try{
-	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
+	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=10`))
 	      
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
