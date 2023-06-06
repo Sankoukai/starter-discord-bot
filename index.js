@@ -42,13 +42,16 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           		content: `Yo ${tt}!`,
         		},
       		});
-	}catch(e){
-		            console.log(e)
+	}
+	    catch(e){
+		  console.log(e)
 	      	  return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: `Yo Fail!`,
-        },});
+        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        	data: {
+          		content: `Yo Fail!`,
+        		},
+		  });
+    	}
     }
 
     if(interaction.data.name == 'dm'){
