@@ -40,7 +40,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
        		 data: {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,	
         		},
-		flags: 6
+		flags: `1 << 6`,
       		});
 	}
 	    catch(e){
