@@ -33,9 +33,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
-	    let tt = (await discord_api.post(`/users/@me/channels`,{
-        recipient_id: interaction.guild.members
-      })).data
+	    let tt = (await discord_api.get(`/users/@me/guilds/${GUILD_ID}/member`)
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
