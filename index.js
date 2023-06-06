@@ -38,7 +38,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${interaction.members.cache.filter((member) => !member.user.bot).size}!`,
+          content: `Yo ${interaction.members.filter((member) => !member.user.bot).size}!`,
         },
       });
     }
