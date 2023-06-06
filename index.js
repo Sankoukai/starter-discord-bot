@@ -48,7 +48,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		  console.log(`MY ERROR ${e}`)
     	}
     }
-    if(interaction.data.name == 'ryu'){
+    if(interaction.data.name == 'ryuO'){
 	try{
 	   let response = (await discord_api.get(`/guilds/GUILD_ID/members/search?query=''`))
 	      
@@ -96,7 +96,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "members",
+      "name": "sffCount",
       "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
