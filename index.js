@@ -101,7 +101,7 @@ app.get('/register_commands', async (req,res) =>{
       "options": []
     },
     {
-      "name": "ryu",
+      "name": "ryuO",
       "description": "Retourne les joueurs de ryu en ligne",
       "options": []
     },
