@@ -17,7 +17,7 @@ const app = express();
 
 const discord_api = axios.create({
   baseURL: 'https://discord.com/api/',
-  timeout: 3000,
+  timeout: 30000,
   headers: {
 	"Access-Control-Allow-Origin": "*",
 	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
@@ -39,7 +39,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Yo ${tt.data.map(d => d.user.name)}`,
+          		content: `Yo ${tt.data.size}`,
         		},
       		});
 	}
