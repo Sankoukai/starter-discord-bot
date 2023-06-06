@@ -36,8 +36,9 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	try{
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
       		return res.send({
-		flags: 64,
+		
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+		flags: 64,
        		 data: {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,	
         		},
