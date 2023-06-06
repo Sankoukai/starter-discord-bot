@@ -32,7 +32,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
-    if(interaction.data.name == 'sffCount'){
+    if(interaction.data.name == 'sffcount'){
 	try{
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
 	      
@@ -81,7 +81,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "sffCount",
+      "name": "sffcount",
       "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
