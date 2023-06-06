@@ -31,7 +31,6 @@ const discord_api = axios.create({
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-  const guild = await interaction.guilds.fetch(GUILD_ID);
 	
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
@@ -39,7 +38,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${guild.members.filter((member) => !member.user.bot).size}!`,
+          content: `Yo ${interaction.guild.members.filter((member) => !member.user.bot).size}!`,
         },
       });
     }
