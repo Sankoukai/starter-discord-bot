@@ -44,13 +44,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       		});
 	}
 	    catch(e){
-		  console.log(e)
-	      	  return res.send({
-        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        	data: {
-          		content: `Yo Fail!`,
-        		},
-		  });
+		  console.log(`MY ERROR ${e}`)
     	}
     }
 
