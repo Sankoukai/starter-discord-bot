@@ -32,14 +32,30 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
-    if(interaction.data.name == 'test'){
+    if(interaction.data.name == 'sffCount'){
 	try{
-	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
 	      
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Nombres de membres sur SFF: ${tt.data.approximate_member_count}`,
+          		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,
+			 ephemeral: true
+        		},
+      		});
+	}
+	    catch(e){
+		  console.log(`MY ERROR ${e}`)
+    	}
+    }
+    if(interaction.data.name == 'ryu'){
+	try{
+	   let response = (await discord_api.get(`/guilds/GUILD_ID/members/search?query=''`))
+	      
+      		return res.send({
+        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+       		 data: {
+          		content: `Nombres de membres sur SFF: ${tt.data}`,
         		},
       		});
 	}
@@ -80,8 +96,13 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "test",
+      "name": "members",
       "description": "Retourne le nombre de membres SFF!",
+      "options": []
+    },
+    {
+      "name": "ryu",
+      "description": "Retourne les joueurs de ryu en ligne",
       "options": []
     },
     {
