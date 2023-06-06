@@ -40,7 +40,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,
-			ephemeral: `true`,
+			ephemeral: "true",
         		},
       		});
 	}
