@@ -31,14 +31,14 @@ const discord_api = axios.create({
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-  const guild = interaction.guilds.cache.get(PUBLIC_KEY);
+
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${guild.members.cache.filter((member) => !member.user.bot).size}!`,
+          content: `Yo ${interaction.guild.members.filter((member) => !member.user.bot).size}!`,
         },
       });
     }
