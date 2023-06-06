@@ -40,21 +40,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,
-        		},
-      		});
-	}
-	    catch(e){
-		  console.log(`MY ERROR ${e}`)
-    	}
-    }
-    if(interaction.data.name == 'ryuO'){
-	try{
-	   let response = (await discord_api.get(`/guilds/GUILD_ID/members/search?query=''`))
-	      
-      		return res.send({
-        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-       		 data: {
-          		content: `Nombres de membres sur SFF: ${reponse.data}`,
+			ephemeral: true
         		},
       		});
 	}
@@ -97,11 +83,6 @@ app.get('/register_commands', async (req,res) =>{
     {
       "name": "sffCount",
       "description": "Retourne le nombre de membres SFF!",
-      "options": []
-    },
-    {
-      "name": "ryuO",
-      "description": "Retourne les joueurs de ryu en ligne",
       "options": []
     },
     {
