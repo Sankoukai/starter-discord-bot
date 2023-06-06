@@ -31,7 +31,7 @@ const discord_api = axios.create({
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-  const guild = await client.guilds.fetch(GUILD_ID);
+  const guild = await interaction.guilds.fetch(GUILD_ID);
 	
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
