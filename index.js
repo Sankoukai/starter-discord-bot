@@ -34,11 +34,12 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
-    if(interaction.data.name == 'yo'){
+    if(interaction.data.name == 'members'){
+	await interaction.guild.members.fetch()
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `Yo ${interaction.member.user.username}!`,
+          content: `Yo ${interaction.guild.members.cache.filter((member) => !member.user.bot).size}!`,
         },
       });
     }
@@ -75,8 +76,8 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "yo",
-      "description": "replies with Yo!",
+      "name": "members",
+      "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
     {
