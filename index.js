@@ -34,12 +34,12 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
 	try{
-	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}`))
-	       console.log(util.inspect(tt.data))
+	   let tt = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
+	       c
       		return res.send({
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Nombres de membres sur SFF: ${tt.data}`,
+          		content: `Nombres de membres sur SFF: ${tt.data.approximate_member_count}`,
         		},
       		});
 	}
