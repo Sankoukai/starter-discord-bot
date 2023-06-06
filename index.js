@@ -42,7 +42,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           		content: `Nombres de membres sur SFF: ${response.data.approximate_member_count}`,	
         		},
 		
-      		},{ephemeral:true});
+      		},ephemeral:true);
 	}
 	    catch(e){
 		  console.log(`MY ERROR ${e}`)
