@@ -29,7 +29,10 @@ const discord_api = axios.create({
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-	//.members.filter((member) => !member.user.bot).size
+let tt = (await discord_api.post(`/users/@me/channels`,{
+        recipient_id: interaction.guild.members
+      })).data
+console.log(`ALORS ? ${tt}`)
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
