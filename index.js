@@ -33,22 +33,22 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'test'){
-	    try{
-	    let tt = (await discord_api.get(`/guilds/${GUILD_ID}`))
+	try{
+	   let tt = await discord_api.get(`/guilds/${GUILD_ID}`)
 	    
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: `Yo ${tt}!`,
-        },
-      });}catch(e){
+      		return res.send({
+        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+       		 data: {
+          		content: `Yo ${tt}!`,
+        		},
+      		});
+	}catch(e){
 		            console.log(e)
 	      	  return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           content: `Yo Fail!`,
-        },
-	    }
+        },});
     }
 
     if(interaction.data.name == 'dm'){
