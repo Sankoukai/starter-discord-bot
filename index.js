@@ -16,9 +16,11 @@ client.events = new Collection();
 client.memberGuildConfig = new Collection();
 client.messageGuildConfig = new Collection();
 
+   console.log(`const loadEvents !!`);
 const { loadEvents } = require("./Handlers/eventHandler");
+console.log(`const loadCommands !!`);
 const { loadCommands } = require('./Handlers/commandHandler');
-
+console.log(`const loadEvents !!`);
 loadEvents(client);
-
+console.log(`client  ${client} client !!`);
 client.login(TOKEN);
