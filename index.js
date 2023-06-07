@@ -56,7 +56,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 			
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de cammy sur SFF: ${response.data.filter((member) => member.roles.contains(1105860664624418836).size > 0)}`,
+          		content: `Nombre de cammy sur SFF: ${response.data.filter((member) => member.roles.includes(1105860664624418836).size > 0)}`,
 			flags: 64,
         		},
       		});
