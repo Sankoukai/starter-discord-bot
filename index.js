@@ -25,3 +25,8 @@ loadEvents(client);
 loadCommands(client);
 
 //client.login(TOKEN);
+
+
+app.get('/update', async (req,res) =>{
+  return res.send('update?');
+})
