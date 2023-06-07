@@ -56,7 +56,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 			
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => member.roles.includes('🍵cammy')?.map((member) => member.user)}`,
+          		content: `Nombre de Cammy sur SFF: ${response.data.filter(
+				(member) => member.roles.includes('🍵cammy')
+				)?.map(
+				(member) => member.user
+			)}`,
 			flags: 64,
         		},
       		});
