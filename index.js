@@ -49,7 +49,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     	}
     }
 
-    if(interaction.data.name == 'dm'){
+    /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (await discord_api.post(`/users/@me/channels`,{
         recipient_id: interaction.member.user.id
@@ -71,7 +71,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           content:'👍'
         }
       });
-    }
+    }*/
   }
 
 });
@@ -85,11 +85,11 @@ app.get('/register_commands', async (req,res) =>{
       "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
-    {
+    /*{
       "name": "dm",
       "description": "sends user a DM",
       "options": []
-    }
+    }*/
   ]
   try
   {
