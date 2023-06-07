@@ -53,9 +53,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}?limit=2`))
       		return res.send({
 		//response.data.filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)
+			conolse.log(`${util.inspect(response.data)}`)
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de ryu sur SFF: ${util.inspect(response.data)}`,
+          		content: `Nombre de ryu sur SFF: ${response.data}`,
 			flags: 64,
         		},
       		});
