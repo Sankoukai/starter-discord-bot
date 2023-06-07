@@ -26,6 +26,30 @@ const discord_api = axios.create({
   }
 });
 
+function sendMessageForSpecificRole(id){
+	try{
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
+	   	console.log(`${util.inspect(response.data)}`);
+      		return res.send({
+			
+        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+       		 data: {
+          		content: `Nombre de Cammy sur SFF: ${response.data.filter(
+				(member) => {
+					return member.roles.includes(id);
+				})
+			 .map(
+				(member) => `@${member.user.display_name}`
+			)}`,
+			flags: 64,
+        		},
+      		});
+	}
+	    catch(e){
+		  console.log(`MY ERROR ${e}`)
+    	}
+}
+
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
 
@@ -48,27 +72,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     	}
     }
  if(interaction.data.name == 'cammy'){
-	try{
-	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
-	   	console.log(`${util.inspect(response.data)}`);
-      		return res.send({
-			
-        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-       		 data: {
-          		content: `Nombre de Cammy sur SFF: ${response.data.filter(
-				(member) => {
-					return member.roles.includes('1105040765186474015');
-				})
-			 .map(
-				(member) => `@${member.user.display_name}`
-			)}`,
-			flags: 64,
-        		},
-      		});
-	}
-	    catch(e){
-		  console.log(`MY ERROR ${e}`)
-    	}
+	sendMessageForSpecificRole('1105040765186474015')
     }
 	  /*
 	  {
