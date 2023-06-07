@@ -33,7 +33,7 @@ app.get('/register_commands', async (req,res) =>{
 
 app.get('/launch', async (req,res) =>{
   client.login(TOKEN);
-  return res.send('launch ok')
+  return res.send('launch ok ZERZERZER${TOKEN}ZERSDFSAZE')
 })
 
 app.listen(8999, () => {
