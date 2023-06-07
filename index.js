@@ -28,7 +28,7 @@ const discord_api = axios.create({
 
 async function sendMessageForSpecificRole(res,id){
 	try{
-	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
 	   	console.log(`${util.inspect(response.data)}`);
       		return res.send({
 			
