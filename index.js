@@ -30,3 +30,7 @@ loadCommands(client);
 app.get('/update', async (req,res) =>{
   return res.send('update?');
 })
+
+app.listen(8999, () => {
+
+})
