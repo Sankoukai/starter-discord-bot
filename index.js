@@ -15,7 +15,7 @@ const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = requir
 const app = express();
 // app.use(bodyParser.json());
 
-const discord_api = axios.create({
+const discord_api = await axios.create({
   baseURL: 'https://discord.com/api/',
   timeout: 3000,
   headers: {
