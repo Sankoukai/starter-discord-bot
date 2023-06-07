@@ -9,7 +9,7 @@ const client = new Client({
     partials:[User, Message, GuildMember, ThreadMembers]
 });
 const express = require('express');
-const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
+
 client.commands = new Collection();
 client.subCommands = new Collection();
 client.events = new Collection();
@@ -27,30 +27,10 @@ loadEvents(client);
 
 client.login(TOKEN);
 
-app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
-  const interaction = req.body;
-
-  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
-    console.log(interaction.data.name)
-    if(interaction.data.name == 'sffcount'){
-      await interaction.guild.members.fetch()
-      return res.send({
-    
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-           data: {
-              content: `Nombre de membres sur SFF: ${interaction.guild.members.cache.filter((member) => !member.user.bot).size}`,
-          flags: 64,
-            },
-          });
-    }
-  }
-
-})
-
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
     {
-      "name": "sffcount",
+      "name": "members",
       "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
