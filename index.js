@@ -54,7 +54,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	   	console.log(`${util.inspect(response.data)}`);
       		return res.send({
 			
-        	type: InteractionResponseType.DeferredChannelMessageWithSource,
+        	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
           		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => member.roles.includes('🍵cammy'))
 			}`,
