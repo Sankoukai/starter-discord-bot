@@ -72,7 +72,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     	}
     }
  if(interaction.data.name == 'cammy'){
-	return sendMessageForSpecificRole('1105040765186474015')
+	return sendMessageForSpecificRole('1105040765186474015');
     }
 	  /*
 	  {
