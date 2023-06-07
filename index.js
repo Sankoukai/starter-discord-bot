@@ -49,7 +49,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     }
  if(interaction.data.name == 'cammy'){
 	try{
-		let guild = discord_api.get(`/guilds/${GUILD_ID}`);
+	   let guild = await discord_api.get(`/guilds/${GUILD_ID}`);
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
 	   	console.log(`${util.inspect(response.data)}`);
       		return res.send({
