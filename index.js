@@ -55,7 +55,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de ryu sur SFF: ${response.data.filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)}`,
+          		content: `Nombre de ryu sur SFF: ${response.data.map().filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)}`,
 			flags: 64,
         		},
       		});
