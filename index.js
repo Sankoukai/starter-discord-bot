@@ -9,8 +9,7 @@ const client = new Client({
     intents:[3276799],
     partials:[User, Message, GuildMember, ThreadMembers]
 });
-const express = require('express');
-const app = express();
+
 client.commands = new Collection();
 client.subCommands = new Collection();
 client.events = new Collection();
@@ -25,17 +24,4 @@ console.log(`const loadEvents !!`);
 loadEvents(client);
 console.log(`client  ${client} client !!`);
 
-
-app.get('/register_commands', async (req,res) =>{
-  client.login(TOKEN);
-  return res.send('launch ok')
-})
-
-app.get('/launch', async (req,res) =>{
-  client.login(TOKEN);
-  return res.send(``aunch ok ZERZERZER${TOKEN}ZERSDFSAZE')
-})
-
-app.listen(8999, () => {
-
-})
+client.login(TOKEN);
