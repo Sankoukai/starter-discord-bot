@@ -22,7 +22,25 @@ loadEvents(client);
 
 client.login(TOKEN);
 
+app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
+  const interaction = req.body;
 
+  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
+    console.log(interaction.data.name)
+    if(interaction.data.name == 'sffcount'){
+      await interaction.guild.members.fetch()
+      return res.send({
+    
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+           data: {
+              content: `Nombre de membres sur SFF: ${interaction.guild.members.cache.filter((member) => !member.user.bot).size}`,
+          flags: 64,
+            },
+          });
+    }
+  }
+
+})
 
 app.get('/register_commands', async (req,res) =>{
   let slash_commands = [
@@ -31,11 +49,11 @@ app.get('/register_commands', async (req,res) =>{
       "description": "Retourne le nombre de membres SFF!",
       "options": []
     },
-    {
+    /*{
       "name": "cammy",
       "description": "Retourne le nombre de cammy",
       "options": []
-    },
+    },*/
     /*{
       "name": "dm",
       "description": "sends user a DM",
