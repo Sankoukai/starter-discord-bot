@@ -51,12 +51,18 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
  if(interaction.data.name == 'cammy'){
 	try{
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
-	   	console.log(`${util.inspect(response.data)}`)
+	   	console.log(`${util.inspect(response.data)}`);
       		return res.send({
 			
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => member.roles.includes(1105860664624418836))}`,
+          		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => {
+				console.log(`${member} -- ${member.roles.includes(1105860664624418836)}`);
+				member.roles.includes(1105860664624418836)
+			}
+				
+				)
+			}`,
 			flags: 64,
         		},
       		});
