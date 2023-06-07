@@ -2,6 +2,7 @@ const APPLICATION_ID = process.env.APPLICATION_ID
 const TOKEN = process.env.TOKEN 
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID 
+
 const express = require('express');
 const app = express();
 const {Client,Partials, Collection} = require('discord.js');
@@ -24,6 +25,7 @@ const { loadCommands } = require('./Handlers/commandHandler');
 loadEvents(client);
 
 client.login(TOKEN);
+console.log("LOGIN")
 
 app.get('/update', async (req,res) =>{
 
