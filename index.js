@@ -50,7 +50,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     }
  if(interaction.data.name == 'ryu'){
 	try{
-	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members/search?query=role:🥋ryu`))
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members/search?query=role:bot`))
       		return res.send({
 		
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
