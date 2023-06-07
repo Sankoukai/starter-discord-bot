@@ -23,9 +23,7 @@ const { loadCommands } = require('./Handlers/commandHandler');
 
 loadEvents(client);
 
-
-
-await client.login(TOKEN);
+client.login(TOKEN);
 
 app.get('/update', async (req,res) =>{
 
