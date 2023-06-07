@@ -26,6 +26,8 @@ const discord_api = axios.create({
   }
 });
 
+const guild = (await discord_api.get(`/guilds/${GUILD_ID})
+
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
@@ -58,7 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
        		 data: {
           		content: `Nombre de Cammy sur SFF: ${response.data.filter(
 				(member) => {
-					console.log(`${member.roles.includes('🍵 Cammy')} -- ${member.roles.includes('1105860664624418836')} -- ${member.roles.includes('🍵Cammy')}`);
+					console.log(`${guild.roles}`);
 					return member.roles.includes('1105860664624418836');
 				})
 			 .map(
