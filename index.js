@@ -60,7 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 				(member) => {
 					console.log(`${member.roles.include('prout') -- member.roles.include('🍵cammy') -- member.roles.include('🍵zer')}`);
 					member.roles.includes('')
-				}
+				})
 			 .map(
 				(member) => `@${member.user.username}`
 			)}`,
