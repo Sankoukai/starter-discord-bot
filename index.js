@@ -1,10 +1,11 @@
 
-// const { clientId, guildId, token, publicKey } = require('./config.json');
-require('dotenv').config()
 const APPLICATION_ID = process.env.APPLICATION_ID 
 const TOKEN = process.env.TOKEN 
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID 
+
+require('dotenv').config()
+
 
 const util = require('util')
 const axios = require('axios')
@@ -374,8 +375,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   }
 
 });
-
-
 
 app.get('/register_commands', async (req,res) => {
   let slash_commands = [
