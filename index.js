@@ -39,7 +39,7 @@ async function sendMessageForSpecificRole(res,id){
 					return member.roles.includes(id);
 				})
 			 .map(
-				(member) => `@&${member.user.id}`
+				(member) => `<@${member.user.id}>`
 				
 			)}`,
 			flags: 64,
