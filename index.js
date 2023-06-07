@@ -74,279 +74,57 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'cammy'){
       return sendMessageForSpecificRole(res,'1105040765186474015');
     }
-    /*
-    {
-      id: '1105035482582233160',
-      name: '🏝️ Deejay',
-      description: null,
-      permissions: 0,
-      position: 56,
-      color: 3066993,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105035703412330506',
-      name: '🎌 Honda',
-      description: null,
-      permissions: 0,
-      position: 55,
-      color: 3447003,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 0,
-      permissions_new: '0'
-    },
-    {
-      id: '1105035782735011902',
-      name: '🥋 Ryu',
-      description: null,
-      permissions: 0,
-      position: 54,
-      color: 16777215,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105035997705682974',
-      name: '🔥 Ken',
-      description: null,
-      permissions: 0,
-      position: 53,
-      color: 12648448,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105036157554802688',
-      name: '🍔 Guile',
-      description: null,
-      permissions: 0,
-      position: 52,
-      color: 4880154,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105036320394457178',
-      name: '🕉️ Dhalsim',
-      description: null,
-      permissions: 0,
-      position: 51,
-      color: 11027200,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105037949990617129',
-      name: '👘 Chunli',
-      description: null,
-      permissions: 0,
-      position: 50,
-      color: 2662853,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039025779261440',
-      name: '💪 Marisa',
-      description: null,
-      permissions: 0,
-      position: 49,
-      color: 16773120,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039198588776448',
-      name: '🩰 Manon',
-      description: null,
-      permissions: 0,
-      position: 48,
-      color: 7716847,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039328834502739',
-      name: '🍺 Jamie',
-      description: null,
-      permissions: 0,
-      position: 47,
-      color: 16753152,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039593235042355',
-      name: '🎶 Kimberly',
-      description: null,
-      permissions: 0,
-      position: 46,
-      color: 14096640,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039726815232020',
-      name: '🥊 Luke',
-      description: null,
-      permissions: 0,
-      position: 45,
-      color: 16086,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039877797580942',
-      name: '🦧 Blanka',
-      description: null,
-      permissions: 0,
-      position: 44,
-      color: 8448527,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      
-2023-06-07 13:37:30.278: unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105039968210001972',
-      name: '👣 Juri',
-      description: null,
-      permissions: 0,
-      position: 43,
-      color: 11534568,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105040328429420554',
-      name: '🦯 JP',
-      description: null,
-      permissions: 0,
-      position: 42,
-      color: 5905291,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105040765186474015',
-      name: '🍵 Cammy',
-      description: null,
-      permissions: 0,
-      position: 41,
-      color: 45823,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105040908291952650',
-      name: '🏏Lily',
-      description: null,
-      permissions: 0,
-      position: 40,
-      color: 10737238,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
-    },
-    {
-      id: '1105041405753167922',
-      name: '🐻 Zangief',
-      description: null,
-      permissions: 0,
-      position: 39,
-      color: 15073280,
-      hoist: false,
-      managed: false,
-      mentionable: true,
-      icon: null,
-      unicode_emoji: null,
-      flags: 1,
-      permissions_new: '0'
+    if(interaction.data.name == 'deejay'){
+      return sendMessageForSpecificRole(res,'1105040765186474015');
     }
-    */
+    if(interaction.data.name == 'honda'){
+      return sendMessageForSpecificRole(res,'1105035703412330506');
+    }
+    if(interaction.data.name == 'ryu'){
+      return sendMessageForSpecificRole(res,'1105035782735011902');
+    }
+    if(interaction.data.name == 'ken'){
+      return sendMessageForSpecificRole(res,'1105035997705682974');
+    }
+    if(interaction.data.name == 'guile'){
+      return sendMessageForSpecificRole(res,'1105036157554802688');
+    }
+    if(interaction.data.name == 'dhalsim'){
+      return sendMessageForSpecificRole(res,'1105036320394457178');
+    }
+    if(interaction.data.name == 'chunli'){
+      return sendMessageForSpecificRole(res,'1105037949990617129');
+    }
+    if(interaction.data.name == 'marisa'){
+      return sendMessageForSpecificRole(res,'1105039025779261440');
+    }
+    if(interaction.data.name == 'manon'){
+      return sendMessageForSpecificRole(res,'1105039198588776448');
+    }
+    if(interaction.data.name == 'jamie'){
+      return sendMessageForSpecificRole(res,'1105039328834502739');
+    }
+    if(interaction.data.name == 'kimberly'){
+      return sendMessageForSpecificRole(res,'1105039593235042355');
+    }
+    if(interaction.data.name == 'luke'){
+      return sendMessageForSpecificRole(res,'1105039726815232020');
+    }
+    if(interaction.data.name == 'blanka'){
+      return sendMessageForSpecificRole(res,'1105039877797580942');
+    }
+    if(interaction.data.name == 'juri'){
+      return sendMessageForSpecificRole(res,'1105039968210001972');
+    }
+    if(interaction.data.name == 'jp'){
+      return sendMessageForSpecificRole(res,'1105040328429420554');
+    }
+    if(interaction.data.name == 'lily'){
+      return sendMessageForSpecificRole(res,'1105040908291952650');
+    }
+    if(interaction.data.name == 'zangief'){
+      return sendMessageForSpecificRole(res,'1105041405753167922');
+    }
 
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
@@ -384,9 +162,95 @@ app.get('/register_commands', async (req,res) => {
     },
     {
       "name": "cammy",
-      "description": "Retourne le nombre de cammy",
+      "description": "Retourne une liste de joueur jouant Cammy",
       "options": []
     },
+    {
+      "name": "deejay",
+      "description": "Retourne une liste de joueur jouant Deejay",
+      "options": []
+    },
+    {
+      "name": "honda",
+      "description": "Retourne une liste de joueur jouant Honda",
+      "options": []
+    },
+    {
+      "name": "ryu",
+      "description": "Retourne une liste de joueur jouant Ryu",
+      "options": []
+    },
+    {
+      "name": "ken",
+      "description": "Retourne une liste de joueur jouant Ken",
+      "options": []
+    },
+    {
+      "name": "guile",
+      "description": "Retourne une liste de joueur jouant Guile",
+      "options": []
+    },
+    {
+      "name": "dhalsim",
+      "description": "Retourne une liste de joueur jouant Dhalsim",
+      "options": []
+    },
+    {
+      "name": "chunli",
+      "description": "Retourne une liste de joueur jouant Chunli",
+      "options": []
+    },
+    {
+      "name": "marisa",
+      "description": "Retourne une liste de joueur jouant Marisa",
+      "options": []
+    },
+    {
+      "name": "manon",
+      "description": "Retourne une liste de joueur jouant Manon",
+      "options": []
+    },
+    {
+      "name": "jamie",
+      "description": "Retourne une liste de joueur jouant Jamie",
+      "options": []
+    },
+    {
+      "name": "kimberly",
+      "description": "Retourne une liste de joueur jouant Kimberly",
+      "options": []
+    },
+     {
+      "name": "luke",
+      "description": "Retourne une liste de joueur jouant Luke",
+      "options": []
+    },
+    {
+      "name": "blanka",
+      "description": "Retourne une liste de joueur jouant Blanka",
+      "options": []
+    },
+    {
+      "name": "juri",
+      "description": "Retourne une liste de joueur jouant Juri",
+      "options": []
+    },
+    {
+      "name": "jp",
+      "description": "Retourne une liste de joueur jouant Jp",
+      "options": []
+    },
+    {
+      "name": "lily",
+      "description": "Retourne une liste de joueur jouant Lily",
+      "options": []
+    },
+    {
+      "name": "zangief",
+      "description": "Retourne une liste de joueur jouant Zangief",
+      "options": []
+    },
+
     /*{
       "name": "dm",
       "description": "sends user a DM",
