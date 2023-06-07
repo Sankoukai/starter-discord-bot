@@ -60,7 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
        		 data: {
           		content: `Nombre de Cammy sur SFF: ${response.data.filter(
 				(member) => {
-					console.log(`${guild.roles}`);
+					console.log(`${guild.data.roles}`);
 					return member.roles.includes('1105860664624418836');
 				})
 			 .map(
