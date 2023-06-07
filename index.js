@@ -57,7 +57,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
           		content: `Nombre de Cammy sur SFF: ${response.data.map(
-				(member) => member.user
+				(member) => `@${member.user.name}`
 			)}`,
 			flags: 64,
         		},
