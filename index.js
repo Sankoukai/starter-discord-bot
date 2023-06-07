@@ -15,7 +15,7 @@ const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = requir
 const app = express();
 // app.use(bodyParser.json());
 
-const discord_api = await axios.create({
+const discord_api = axios.create({
   baseURL: 'https://discord.com/api/',
   timeout: 3000,
   headers: {
@@ -26,7 +26,7 @@ const discord_api = await axios.create({
   }
 });
 
-const guild = (await discord_api.get(`/guilds/${GUILD_ID}))
+const guild = discord_api.get(`/guilds/${GUILD_ID})
 
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
