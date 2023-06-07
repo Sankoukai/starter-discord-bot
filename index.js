@@ -53,10 +53,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
 	   	console.log(`${util.inspect(response.data)}`)
       		return res.send({
-
+			
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de cammy sur SFF: ${response.data.filter((member) => member.roles.contains(1105860664624418836)).size > 0)}`,
+          		content: `Nombre de cammy sur SFF: ${response.data.filter((member) => member.roles.contains(1105860664624418836).size > 0)}`,
 			flags: 64,
         		},
       		});
