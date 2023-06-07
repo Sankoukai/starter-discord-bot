@@ -56,12 +56,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 			
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => {
-				console.log(`${member} -- ${member.roles.includes('🍵cammy')}`);
-				member.roles.includes('🍵cammy')
-			}
-				
-				)
+          		content: `Nombre de Cammy sur SFF: ${response.data.filter((member) => member.roles.includes('🍵cammy'))
 			}`,
 			flags: 64,
         		},
