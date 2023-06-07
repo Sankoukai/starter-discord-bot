@@ -50,14 +50,14 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     }
  if(interaction.data.name == 'ryu'){
 	try{
-	   let response = (await discord_api.get(`/guilds/${GUILD_ID}?limit=2`))
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
 	   	console.log(`${util.inspect(response.data)}`)
       		return res.send({
 		//response.data.filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)
 
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de ryu sur SFF: ${response.data}`,
+          		content: `Nombre de ryu sur SFF: ${response.data.filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)}`,
 			flags: 64,
         		},
       		});
