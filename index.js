@@ -29,12 +29,12 @@ const discord_api = axios.create({
 async function sendMessageForSpecificRole(res,id){
   try{
      let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
-      console.log(`${util.inspect(response.data)}`);
+    
           return res.send({
       
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
            data: {
-              content: `Joueur(s) jouant Cammy: ${response.data.filter(
+              content: `${response.data.filter(
         (member) => {
           return member.roles.includes(id);
         })
