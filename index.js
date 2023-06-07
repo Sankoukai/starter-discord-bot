@@ -6,9 +6,6 @@ const TOKEN = process.env.TOKEN
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID 
 
-
-
-
 const util = require('util')
 const axios = require('axios')
 const express = require('express');
@@ -56,27 +53,26 @@ async function sendMessageForSpecificRole(res,id){
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name)
     if(interaction.data.name == 'sffcount'){
-  try{
-     let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
+      try{
+        let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
           return res.send({
     
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
            data: {
               content: `Nombre de membres sur SFF: ${response.data.approximate_member_count}`,
-      flags: 64,
+              flags: 64,
             },
           });
-  }
+        }
       catch(e){
-      console.log(`MY ERROR ${e}`)
+        console.log(`MY ERROR ${e}`)
       }
     }
- if(interaction.data.name == 'cammy'){
-  return sendMessageForSpecificRole(res,'1105040765186474015');
+    if(interaction.data.name == 'cammy'){
+      return sendMessageForSpecificRole(res,'1105040765186474015');
     }
     /*
     {
@@ -381,7 +377,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
 
 
-app.get('/register_commands', async (req,res) =>{
+app.get('/register_commands', async (req,res) => {
   let slash_commands = [
     {
       "name": "sffcount",
