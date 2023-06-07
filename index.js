@@ -58,7 +58,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
        		 data: {
           		content: `Nombre de Cammy sur SFF: ${response.data.filter(
 				(member) => {
-					console.log(`${member.roles.includes('prout')} -- ${member.roles.includes('🍵cammy')} -- ${member.roles.includes('🍵zer')}`);
+					console.log(`${member.roles.includes('🍵 Cammy')} -- ${member.roles.includes('🍵 cammy')} -- ${member.roles.includes('🍵Cammy')}`);
 					member.roles.includes('🍵cammy')
 				})
 			 .map(
