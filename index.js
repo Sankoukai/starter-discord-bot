@@ -48,6 +48,22 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		  console.log(`MY ERROR ${e}`)
     	}
     }
+ if(interaction.data.name == 'ryu'){
+	try{
+	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members/search?query='role:🥋ryu'`))
+      		return res.send({
+		
+        	type: InteractionResponseType.DeferredChannelMessageWithSource,
+       		 data: {
+          		content: `Nombre de ryu sur SFF: ${response.data}`,
+			flags: 64,
+        		},
+      		});
+	}
+	    catch(e){
+		  console.log(`MY ERROR ${e}`)
+    	}
+    }
 
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
@@ -83,6 +99,11 @@ app.get('/register_commands', async (req,res) =>{
     {
       "name": "sffcount",
       "description": "Retourne le nombre de membres SFF!",
+      "options": []
+    },
+    {
+      "name": "ryu",
+      "description": "Retourne le nombre de ryu",
       "options": []
     },
     /*{
