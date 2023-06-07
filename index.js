@@ -34,12 +34,12 @@ async function sendMessageForSpecificRole(res,id){
 			
         	type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
        		 data: {
-          		content: `Nombre de Cammy sur SFF: ${response.data.filter(
+          		content: `Joueur(s) jouant Cammy: ${response.data.filter(
 				(member) => {
 					return member.roles.includes(id);
 				})
 			 .map(
-				(member) => `<@${member.user.id}>`
+				(member) => `<@${member.user.id}>\n`
 				
 			)}`,
 			flags: 64,
