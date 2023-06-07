@@ -29,7 +29,12 @@ console.log(`client  ${client} client !!`);
 app.get('/register_commands', async (req,res) =>{
   client.login(TOKEN);
   return res.send('launch ok')
-}
+})
+
+app.get('/launch', async (req,res) =>{
+  client.login(TOKEN);
+  return res.send('launch ok')
+})
 
 app.listen(8999, () => {
 
