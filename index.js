@@ -9,7 +9,7 @@ const client = new Client({
     partials:[User, Message, GuildMember, ThreadMembers]
 });
 const express = require('express');
-
+const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 client.commands = new Collection();
 client.subCommands = new Collection();
 client.events = new Collection();
