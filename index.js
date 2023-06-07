@@ -36,3 +36,7 @@ app.get('/launch', async (req,res) =>{
     return res.send(`${e.code} error from discord`)
   }
 })
+
+app.listen(8999, () => {
+
+})
