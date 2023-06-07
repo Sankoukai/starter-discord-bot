@@ -26,7 +26,7 @@ const discord_api = axios.create({
   }
 });
 
-async function sendMessageForSpecificRole(id){
+async function sendMessageForSpecificRole(res,id){
 	try{
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
 	   	console.log(`${util.inspect(response.data)}`);
@@ -72,7 +72,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     	}
     }
  if(interaction.data.name == 'cammy'){
-	return sendMessageForSpecificRole('1105040765186474015');
+	return sendMessageForSpecificRole(res,'1105040765186474015');
     }
 	  /*
 	  {
