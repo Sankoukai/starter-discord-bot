@@ -24,20 +24,4 @@ const { loadCommands } = require('./Handlers/commandHandler');
 console.log(`const loadEvents !!`);
 loadEvents(client);
 console.log(`client  ${client} client !!`);
-
-
-app.get('/launch', async (req,res) =>{
-  try{
-    
 client.login(TOKEN);
-    return res.send('commands have been registered')
-  }catch(e){
-    console.error(e.code)
-    console.error(e.response?.data)
-    return res.send(`${e.code} error from discord`)
-  }
-})
-
-app.listen(8999, () => {
-
-})

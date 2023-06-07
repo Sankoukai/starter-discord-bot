@@ -4,7 +4,7 @@ const table = new ascii().setHeading("Commands","Status");
 
 async function loadCommands(client){
    
-    console.log(`loadCommands !!`)
+    console.log(`loadCommands ---- !!`)
 
     await client.commands.clear();
 
