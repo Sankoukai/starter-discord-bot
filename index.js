@@ -25,11 +25,11 @@ console.log(`const loadEvents !!`);
 loadEvents(client);
 console.log(`client  ${client} client !!`);
 
-client.login(TOKEN);
 
 app.get('/launch', async (req,res) =>{
   try{
     
+client.login(TOKEN);
     return res.send('commands have been registered')
   }catch(e){
     console.error(e.code)
