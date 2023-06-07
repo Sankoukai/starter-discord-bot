@@ -48,7 +48,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 		  console.log(`MY ERROR ${e}`)
     	}
     }
- if(interaction.data.name == 'ryu'){
+ if(interaction.data.name == 'cammy'){
 	try{
 	   let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=2`))
 	   	console.log(`${util.inspect(response.data)}`)
@@ -57,7 +57,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
         	type: InteractionResponseType.DeferredChannelMessageWithSource,
        		 data: {
-          		content: `Nombre de ryu sur SFF: ${response.data.filter((member) => member.roles.filter((role) => role.name.includes("ryu")).size > 0)}`,
+          		content: `Nombre de cammy sur SFF: ${response.data.filter((member) => member.roles.contains(1105860664624418836)).size > 0).map((member)=>member.user)}`,
 			flags: 64,
         		},
       		});
@@ -104,8 +104,8 @@ app.get('/register_commands', async (req,res) =>{
       "options": []
     },
     {
-      "name": "ryu",
-      "description": "Retourne le nombre de ryu",
+      "name": "cammy",
+      "description": "Retourne le nombre de cammy",
       "options": []
     },
     /*{
