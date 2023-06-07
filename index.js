@@ -26,7 +26,7 @@ const discord_api = axios.create({
   }
 });
 
-const guild = (await discord_api.get(`/guilds/${GUILD_ID})
+const guild = (await discord_api.get(`/guilds/${GUILD_ID}))
 
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
