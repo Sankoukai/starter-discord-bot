@@ -75,7 +75,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return sendMessageForSpecificRole(res,'1105040765186474015');
     }
     if(interaction.data.name == 'deejay'){
-      return sendMessageForSpecificRole(res,'1105040765186474015');
+      return sendMessageForSpecificRole(res,'1105035482582233160');
     }
     if(interaction.data.name == 'honda'){
       return sendMessageForSpecificRole(res,'1105035703412330506');
