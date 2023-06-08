@@ -149,6 +149,9 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'master'){
       return sendMessageForSpecificRole(res,'1105066879627821086');
     }
+    if(interaction.data.name == 'sensei'){
+      return sendMessageForSpecificRole(res,'1105529280626172124');
+    }
 
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
@@ -312,6 +315,11 @@ app.get('/register_commands', async (req,res) => {
     {
       "name": "master",
       "description": "Retourne une liste de joueur niveau Master",
+      "options": []
+    },
+    {
+      "name": "sensei",
+      "description": "Retourne une liste de Sensei",
       "options": []
     },
 
