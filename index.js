@@ -125,6 +125,30 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'zangief'){
       return sendMessageForSpecificRole(res,'1105041405753167922');
     }
+    if(interaction.data.name == 'sac'){
+      return sendMessageForSpecificRole(res,'1105071692302262373');
+    }
+    if(interaction.data.name == 'iron'){
+      return sendMessageForSpecificRole(res,'1105067726998872106');
+    }
+    if(interaction.data.name == 'bronze'){
+      return sendMessageForSpecificRole(res,'1105066053232513024');
+    }
+    if(interaction.data.name == 'silver'){
+      return sendMessageForSpecificRole(res,'1105066125819125841');
+    }
+    if(interaction.data.name == 'gold'){
+      return sendMessageForSpecificRole(res,'1105066437225218099');
+    }
+    if(interaction.data.name == 'platinum'){
+      return sendMessageForSpecificRole(res,'1105066586294992906');
+    }
+    if(interaction.data.name == 'diamond'){
+      return sendMessageForSpecificRole(res,'1105066741366796299');
+    }
+    if(interaction.data.name == 'master'){
+      return sendMessageForSpecificRole(res,'1105066879627821086');
+    }
 
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
@@ -248,6 +272,46 @@ app.get('/register_commands', async (req,res) => {
     {
       "name": "zangief",
       "description": "Retourne une liste de joueur jouant Zangief",
+      "options": []
+    },
+    {
+      "name": "sac",
+      "description": "Retourne une liste de joueur niveau Sac",
+      "options": []
+    },
+    {
+      "name": "iron",
+      "description": "Retourne une liste de joueur niveau Iron",
+      "options": []
+    },
+    {
+      "name": "bronze",
+      "description": "Retourne une liste de joueur niveau Bronze",
+      "options": []
+    },
+    {
+      "name": "silver",
+      "description": "Retourne une liste de joueur niveau Silver",
+      "options": []
+    },
+    {
+      "name": "gold",
+      "description": "Retourne une liste de joueur niveau Gold",
+      "options": []
+    },
+    {
+      "name": "platinum",
+      "description": "Retourne une liste de joueur niveau Platinum",
+      "options": []
+    },
+    {
+      "name": "diamond",
+      "description": "Retourne une liste de joueur niveau Diamond",
+      "options": []
+    },
+    {
+      "name": "master",
+      "description": "Retourne une liste de joueur niveau Master",
       "options": []
     },
 
