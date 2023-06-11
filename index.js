@@ -409,10 +409,6 @@ app.get('/register_commands', async (req,res) => {
       })
   );
    
-  
-
-  
-  console.log(`slash_commands ??? ${util.inspect(slash_commands)}`);
 
   try
   {
