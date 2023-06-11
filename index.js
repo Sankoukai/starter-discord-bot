@@ -333,26 +333,34 @@ app.get('/register_commands', async (req,res) => {
       "description": "Retourne une liste de Sensei",
       "options": []
     },
-    tournaments.forEach( t => 
-      {
-        "name": `${t.name} register`,
-        "description":"je m'inscris au tournoi"
-      },
-      {
-        "name": `${t.name} unregister`,
-        "description":"je me désinscris du tournoi"
-      },
-      {
-        "name": `${t.name} list`,
-        "description":"voir la liste des participants"
-      },
-    )
+    
     /*{
       "name": "dm",
       "description": "sends user a DM",
       "options": []
     }*/
-  ]
+  ];
+
+  let tournamentsCommands = tournaments.forEach( t => 
+      {
+        "name": `${t.name} register`,
+        "description":"je m'inscris au tournoi",
+        "options": []
+      },
+      {
+        "name": `${t.name} unregister`,
+        "description":"je me désinscris du tournoi",
+        "options": []
+      },
+      {
+        "name": `${t.name} list`,
+        "description":"voir la liste des participants",
+        "options": []
+      },
+    )
+  
+  slash_commands.put(tournamentsCommands)
+
   try
   {
     // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
