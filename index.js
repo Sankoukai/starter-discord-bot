@@ -342,7 +342,7 @@ app.get('/register_commands', async (req,res) => {
   ];
 
   let tournamentsCommands = tournaments.forEach( t => 
-      {
+      [{
         "name": `${t.name} register`,
         "description":"je m'inscris au tournoi",
         "options": []
@@ -356,10 +356,10 @@ app.get('/register_commands', async (req,res) => {
         "name": `${t.name} list`,
         "description":"voir la liste des participants",
         "options": []
-      },
+      },]
     )
   
-  slash_commands.put(tournamentsCommands)
+  slash_commands.put(tournamentsCommands.map())
 
   try
   {
