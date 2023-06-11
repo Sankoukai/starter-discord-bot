@@ -62,16 +62,6 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
-function flatten(array)
-{
-    if(array.size == 0)
-        return array;
-    else if(Array.isArray(array[0]))
-        return flatten(array[0]).concat(flatten(array.slice(1)));
-    else
-        return [array[0]].concat(flatten(array.slice(1)));
-}
-
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
@@ -172,7 +162,36 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
-
+    tournaments.forEach(tournament => {
+      if(interaction.data.name = `${tournament.name} register`){
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+              content: `tournament ${tournament.name} register`
+              flags: 64,
+            },
+          });
+      }
+      if(interaction.data.name = `${tournament.name} unregister`){
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+              content: `tournament ${tournament.name} unregister`
+              flags: 64,
+            },
+          });
+      }
+      if(interaction.data.name = `${tournament.name} list`){
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+              content: `tournament ${tournament.name} list`
+              flags: 64,
+            },
+          });
+      }
+    })
+    if(interaction.data.name.includes())
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (await discord_api.post(`/users/@me/channels`,{
