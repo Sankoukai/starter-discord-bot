@@ -3,10 +3,12 @@ const APPLICATION_ID = process.env.APPLICATION_ID
 const TOKEN = process.env.TOKEN 
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID 
+const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY 
+
 
 require('dotenv').config()
 
-
+import { Data } from "dataclass";
 const util = require('util')
 const axios = require('axios')
 const express = require('express');
@@ -25,6 +27,13 @@ const discord_api = axios.create({
   "Authorization": `Bot ${TOKEN}`
   }
 });
+
+class Tournament extends Data {
+  id: number = 0;
+  name: String = "";
+};
+
+const tournaments = [Tournament("213123","tournoi1"),Tournament("21323","tournoi2")];
 
 async function sendMessageForSpecificRole(res,id){
   try{
@@ -322,7 +331,20 @@ app.get('/register_commands', async (req,res) => {
       "description": "Retourne une liste de Sensei",
       "options": []
     },
-
+    tournaments.foreach{ t => 
+      {
+        "name": `${t.name} register`,
+        "description":"je m'inscris au tournoi"
+      },
+      {
+        "name": `${t.name} unregister`,
+        "description":"je me désinscris du tournoi"
+      },
+      {
+        "name": `${t.name} list`,
+        "description":"voir la liste des participants"
+      },
+    }
     /*{
       "name": "dm",
       "description": "sends user a DM",
