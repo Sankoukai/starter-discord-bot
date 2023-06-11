@@ -358,7 +358,7 @@ app.get('/register_commands', async (req,res) => {
       },]
     )
   
-  slash_commands.put(tournamentsCommands.flatten())
+  slash_commands.put(tournamentsCommands)
 
   try
   {
