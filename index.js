@@ -194,7 +194,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       }
       if(interaction.data.name == `${tournament.name}_list`){
         try{
-            let response = await challonge_api.get(`/tournaments.json`)
+            let response = (await challonge_api.get(`/tournaments.json`))
             return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
               data: {
