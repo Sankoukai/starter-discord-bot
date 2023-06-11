@@ -35,7 +35,7 @@ class Tournament{
 
 };
 
-const tournaments = [Tournament("213123","tournoi1"),Tournament("21323","tournoi2")];
+const tournaments = [new Tournament("213123","tournoi1"),new Tournament("21323","tournoi2")];
 
 async function sendMessageForSpecificRole(res,id){
   try{
