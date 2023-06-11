@@ -167,7 +167,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
-              content: `tournament ${tournament.name} register`
+              content: `tournament ${tournament.name} register`,
               flags: 64,
             },
           });
@@ -176,7 +176,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
-              content: `tournament ${tournament.name} unregister`
+              content: `tournament ${tournament.name} unregister`,
               flags: 64,
             },
           });
@@ -185,7 +185,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
-              content: `tournament ${tournament.name} list`
+              content: `tournament ${tournament.name} list`,
               flags: 64,
             },
           });
