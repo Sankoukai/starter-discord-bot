@@ -4,7 +4,7 @@ const TOKEN = process.env.TOKEN
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID 
 const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY 
-
+const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME 
 
 require('dotenv').config()
 
@@ -28,13 +28,11 @@ const discord_api = axios.create({
 });
 
 const challonge_api = axios.create({
-  baseURL: 'https://discord.com/api/',
+  baseURL: `https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/`,
   timeout: 3000,
   headers: {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-  "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `Bot ${TOKEN}`
   }
 });
 
