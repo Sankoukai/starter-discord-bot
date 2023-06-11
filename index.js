@@ -64,7 +64,7 @@ async function sendMessageForSpecificRole(res,id){
 
 function flatten(array)
 {
-    if(array.length == 0)
+    if(array.size == 0)
         return array;
     else if(Array.isArray(array[0]))
         return flatten(array[0]).concat(flatten(array.slice(1)));
