@@ -16,17 +16,6 @@ const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = requir
 const app = express();
 // app.use(bodyParser.json());
 
-const challonge_api = axios.create({
-  baseURL: 'https://api.challonge.com/v1/',
-  timeout: 3000,
-  headers: {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-  "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `Bot ${TOKEN}`
-  }
-});
-
 const discord_api = axios.create({
   baseURL: 'https://discord.com/api/',
   timeout: 3000,
@@ -38,6 +27,16 @@ const discord_api = axios.create({
   }
 });
 
+const challonge_api = axios.create({
+  baseURL: 'https://discord.com/api/',
+  timeout: 3000,
+  headers: {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+  "Access-Control-Allow-Headers": "Authorization",
+  "Authorization": `Bot ${TOKEN}`
+  }
+});
 
 class Tournament{
   constructor(id,name){
