@@ -350,7 +350,7 @@ app.get('/register_commands', async (req,res) => {
     }*/
   ];
 
-  let tournamentsCommands = tournaments.forEach( t => 
+  let tournamentsCommands = [tournaments.forEach( t => 
       [{
         "name": `${t.name} register`,
         "description":"je m'inscris au tournoi",
@@ -366,9 +366,9 @@ app.get('/register_commands', async (req,res) => {
         "description":"voir la liste des participants",
         "options": []
       },]
-    )
+    )]
   
-  slash_commands.push(flatten(tournamentsCommands))
+  slash_commands.push(tournamentsCommands.flat(1))
 
   try
   {
