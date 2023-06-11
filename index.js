@@ -28,8 +28,8 @@ const discord_api = axios.create({
 });
 
 class Tournament{
-  id: number = 0;
-  name: String = "";
+  id:0;
+  name:"";
 };
 
 const tournaments = [Tournament("213123","tournoi1"),Tournament("21323","tournoi2")];
