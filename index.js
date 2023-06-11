@@ -8,7 +8,6 @@ const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY
 
 require('dotenv').config()
 
-import { Data } from "dataclass";
 const util = require('util')
 const axios = require('axios')
 const express = require('express');
@@ -28,7 +27,7 @@ const discord_api = axios.create({
   }
 });
 
-class Tournament extends Data {
+class Tournament{
   id: number = 0;
   name: String = "";
 };
