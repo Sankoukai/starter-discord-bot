@@ -351,7 +351,7 @@ app.get('/register_commands', async (req,res) => {
   ];
 
   tournaments.forEach( t => 
-      slash_commands.push([{
+      slash_commands.push({
         "name": `${t.name} register`,
         "description":"je m'inscris au tournoi",
         "options": []
@@ -365,7 +365,7 @@ app.get('/register_commands', async (req,res) => {
         "name": `${t.name} list`,
         "description":"voir la liste des participants",
         "options": []
-      }].flat(2))
+      })
   );
    
   
