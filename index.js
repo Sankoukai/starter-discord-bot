@@ -366,9 +366,12 @@ app.get('/register_commands', async (req,res) => {
         "description":"voir la liste des participants",
         "options": []
       },]
-    )]
+    )];
   
-  slash_commands.push(tournamentsCommands.flat(1))
+  slash_commands.push(tournamentsCommands.flat(2));
+
+  
+  console.log(`slash_commands ??? ${slash_commands}`);
 
   try
   {
