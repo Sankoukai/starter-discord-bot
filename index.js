@@ -27,6 +27,16 @@ const discord_api = axios.create({
   }
 });
 
+const challonge_api = axios.create({
+  baseURL: 'https://api.challonge.com/v1/',
+  timeout: 3000,
+  headers: {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+  "Access-Control-Allow-Headers": "Authorization",
+  }
+});
+
 class Tournament{
   constructor(id,name){
     this.id = id;
@@ -182,10 +192,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           });
       }
       if(interaction.data.name == `${tournament.name}_list`){
+        let response = (await challonge_api.get(`tournaments.json?api_key=${CHALLONGE_API_KEY}`));
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
-              content: `tournament ${tournament.name} list`,
+              content: `tournament ${tournament.name} list ${util.inspect(response)}`,
               flags: 64,
             },
           });
