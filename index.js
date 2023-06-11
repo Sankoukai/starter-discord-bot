@@ -27,7 +27,6 @@ const discord_api = axios.create({
   }
 });
 
-try{
 const challonge_api = axios.create({
   baseURL: `https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/`,
   timeout: 3000,
@@ -36,9 +35,6 @@ const challonge_api = axios.create({
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   }
 });
-}catch(e){
-  console.log(`creation failed ${e}`)
-}
 
 
 
