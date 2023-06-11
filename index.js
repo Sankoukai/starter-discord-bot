@@ -333,7 +333,7 @@ app.get('/register_commands', async (req,res) => {
       "description": "Retourne une liste de Sensei",
       "options": []
     },
-    tournaments.foreach{ t => 
+    tournaments.forEach{ t => 
       {
         "name": `${t.name} register`,
         "description":"je m'inscris au tournoi"
