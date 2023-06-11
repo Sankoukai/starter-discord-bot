@@ -78,7 +78,7 @@ async function tournamentList(res,tournament){
           return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
               data: {
-              content: `tournament ${tournament.name} list ${util.inspect(response)}`,
+              content: `tournament ${tournament.name} list ${util.inspect(response.data)}`,
               flags: 64,
             },
           });
