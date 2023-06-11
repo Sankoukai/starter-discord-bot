@@ -62,6 +62,16 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
+function flatten(array)
+{
+    if(array.length == 0)
+        return array;
+    else if(Array.isArray(array[0]))
+        return flatten(array[0]).concat(flatten(array.slice(1)));
+    else
+        return [array[0]].concat(flatten(array.slice(1)));
+}
+
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
@@ -358,7 +368,7 @@ app.get('/register_commands', async (req,res) => {
       },]
     )
   
-  slash_commands.push(tournamentsCommands.flat(1))
+  slash_commands.push(flatten(tournamentsCommands))
 
   try
   {
