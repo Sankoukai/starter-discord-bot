@@ -34,6 +34,7 @@ const challonge_api = axios.create({
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Authorization",
+  "Access-Control-Allow-Headers": "Content-Type",
   "Content-Type:": "application/json",
   "Authorization": `Bot ${TOKEN}`
   }
