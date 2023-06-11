@@ -163,7 +163,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
     tournaments.forEach(tournament => {
-      if(interaction.data.name == `${tournament.name} register`){
+      if(interaction.data.name == `${tournament.name}_register`){
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
@@ -172,7 +172,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             },
           });
       }
-      if(interaction.data.name == `${tournament.name} unregister`){
+      if(interaction.data.name == `${tournament.name}_unregister`){
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
@@ -181,7 +181,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             },
           });
       }
-      if(interaction.data.name == `${tournament.name} list`){
+      if(interaction.data.name == `${tournament.name}_list`){
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
