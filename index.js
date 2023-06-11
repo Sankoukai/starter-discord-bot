@@ -365,7 +365,7 @@ app.get('/register_commands', async (req,res) => {
         "name": `${t.name} list`,
         "description":"voir la liste des participants",
         "options": []
-      }].flat(1))
+      }].flat(2))
   );
    
   
