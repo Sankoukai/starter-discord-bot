@@ -193,15 +193,19 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           });
       }
       if(interaction.data.name == `${tournament.name}_list`){
-        let response = (await challonge_api.get(`/tournaments.json?api_key=${CHALLONGE_API_KEY}`))
-        return res.send({
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: {
+        try{
+            let response = await challonge_api.get(`/tournaments.json`)
+            return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
               content: `tournament ${tournament.name} list ${util.inspect(response)}`,
               flags: 64,
             },
           });
-      }
+        }catch(e){
+          console.log(`MY ERROR ER ${e}`);
+        }
+    }
     })
     
     /*if(interaction.data.name == 'dm'){
