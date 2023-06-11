@@ -74,8 +74,8 @@ async function sendMessageForSpecificRole(res,id){
 }
 
 async function tournamentList(res,tournament){
-      let response = (await challonge_api.get(`/tournaments.json`))
-      console.log(`ALORS ? ${util.inspect(response)}`)
+      let response = (await challonge_api.get(`/tournaments.json?api_key=${CHALLONGE_API_KEY}`))
+      console.log(`ALORS ? ${util.inspect(response.data)}`)
           return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
               data: {
