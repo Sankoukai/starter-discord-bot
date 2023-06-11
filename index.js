@@ -77,6 +77,18 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
+async function tournamentList(res){
+      let response = (await challonge_api.get(`/tournaments.json`))
+          return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+              content: `tournament ${tournament.name} list ${util.inspect(response)}`,
+              flags: 64,
+            },
+          });
+
+      }
+
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
@@ -197,22 +209,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           });
       }
       if(interaction.data.name == `${tournament.name}_list`){
-        try{
-            let response = (await $this.challonge_api.get(`/tournaments.json`))
-            return res.send({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-              data: {
-              content: `tournament ${tournament.name} list ${util.inspect(response)}`,
-              flags: 64,
-            },
-          });
-        }catch(e){
-          console.log(`MY ERROR ER ${e}`);
-        }
+        return tournamentList(res,tournament);
     }
     })
     
-    
+
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (await discord_api.post(`/users/@me/channels`,{
