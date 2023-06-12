@@ -36,11 +36,15 @@ const challonge_api = axios.create({
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Authorization",
   "Authorization": `Bot ${TOKEN}`,
-  "Accept": "application/json",
-  "Authorization-Type": "v1"
   }
 });
 
+const config = {
+  headers:{
+    "Accept": "application/json",
+    "Authorization-Type": "v1"
+  }
+};
 
 
 class Tournament{
@@ -80,7 +84,7 @@ async function sendMessageForSpecificRole(res,id){
 
 async function tournamentList(res,tournament){
   try{
-      let response = (await challonge_api.get(`/tournaments.json`))
+      let response = (await challonge_api.get(`/tournaments.json`,config))
       console.log(`ALORS ? ${util.inspect(response)}`)
           return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
