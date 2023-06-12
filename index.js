@@ -29,20 +29,22 @@ const discord_api = axios.create({
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
 const challonge_api = axios.create({
-  baseURL: `https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v2/`,
+  baseURL: `https://api.challonge.com/v2/`,
   timeout: 10000,
   headers: {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `Bot ${TOKEN}`,
+  "Authorization": `${CHALLONGE_API_KEY}`,
   }
 });
 
 const config = {
   headers:{
+    'Content-Type: application/vnd.api+json',
     "Accept": "application/json",
-    "Authorization-Type": "v1"
+    "Authorization-Type": "v1",
+    "Authorization": `${CHALLONGE_API_KEY}`,
   }
 };
 
