@@ -28,7 +28,7 @@ const discord_api = axios.create({
   }
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
-const challonge_api = axios.create({
+/*const challonge_api = axios.create({
   baseURL: `https://api.challonge.com/v2/`,
   timeout: 10000,
   headers: {
@@ -57,7 +57,7 @@ class Tournament{
 
 };
 
-const tournaments = [new Tournament("213123","tournoi1"),new Tournament("21323","tournoi2")];
+const tournaments = [new Tournament("213123","tournoi1"),new Tournament("21323","tournoi2")];*/
 
 async function sendMessageForSpecificRole(res,id){
   try{
@@ -84,7 +84,7 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
-async function tournamentList(res,tournament){
+/*async function tournamentList(res,tournament){
   try{
       let response = (await challonge_api.get(`/tournaments.json`,config))
       console.log(`ALORS ? ${util.inspect(response)}`)
@@ -99,7 +99,7 @@ async function tournamentList(res,tournament){
       }catch(e){
         console.log(`MY tournamentList ERROR ${e}`)
       }
-}
+}*/
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
@@ -201,7 +201,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
-    tournaments.forEach(tournament => {
+    /*tournaments.forEach(tournament => {
       if(interaction.data.name == `${tournament.name}_register`){
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -223,7 +223,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       if(interaction.data.name == `${tournament.name}_list`){
         return tournamentList(res,tournament);
     }
-    })
+  })*/
 
 
     /*if(interaction.data.name == 'dm'){
@@ -403,7 +403,7 @@ app.get('/register_commands', async (req,res) => {
     }*/
   ];
 
-  tournaments.forEach( t =>
+  /*tournaments.forEach( t =>
       slash_commands.push({
         "name": `${t.name}_register`,
         "description":"je m'inscris au tournoi",
@@ -419,7 +419,7 @@ app.get('/register_commands', async (req,res) => {
         "description":"voir la liste des participants",
         "options": []
       })
-  );
+  );*/
 
 
   try
