@@ -88,11 +88,10 @@ async function tournamentList(res,tournament){
             },
           });
 
+      }catch(e){
+        console.log(`MY tournamentList ERROR ${e}`)
       }
-      catch(e){
-      console.log(`MY tournamentList ERROR ${e}`)
-      }
-    }
+}
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
