@@ -41,7 +41,7 @@ const challonge_api = axios.create({
 
 const config = {
   headers:{
-    'Content-Type: application/vnd.api+json',
+    "Content-Type": "application/vnd.api+json",
     "Accept": "application/json",
     "Authorization-Type": "v1",
     "Authorization": `${CHALLONGE_API_KEY}`,
