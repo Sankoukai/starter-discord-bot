@@ -23,8 +23,8 @@ const discord_api = axios.create({
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Authorization-Type",
-  "Accept": "application/json",
-  "Authorization-Type": "v1"
+  "Access-Control-Allow-Headers": "Authorization",
+  "Authorization": `Bot ${TOKEN}`,
   }
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
@@ -35,7 +35,9 @@ const challonge_api = axios.create({
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
   "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `Bot ${TOKEN}`
+  "Authorization": `Bot ${TOKEN}`,
+  "Accept": "application/json",
+  "Authorization-Type": "v1"
   }
 });
 
