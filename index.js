@@ -1,10 +1,10 @@
 
-const APPLICATION_ID = process.env.APPLICATION_ID 
-const TOKEN = process.env.TOKEN 
+const APPLICATION_ID = process.env.APPLICATION_ID
+const TOKEN = process.env.TOKEN
 const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
-const GUILD_ID = process.env.GUILD_ID 
-const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY 
-const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME 
+const GUILD_ID = process.env.GUILD_ID
+const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY
+const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME
 
 require('dotenv').config()
 
@@ -28,7 +28,7 @@ const discord_api = axios.create({
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
 const challonge_api = axios.create({
-  baseURL: `https://api.challonge.com/v1/`,
+  baseURL: `https://api.challonge.com/v2/`,
   timeout: 10000,
   headers: {
   "Access-Control-Allow-Origin": "*",
@@ -53,9 +53,9 @@ const tournaments = [new Tournament("213123","tournoi1"),new Tournament("21323",
 async function sendMessageForSpecificRole(res,id){
   try{
      let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
-    
+
           return res.send({
-      
+
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
            data: {
               content: `${response.data.filter(
@@ -64,7 +64,7 @@ async function sendMessageForSpecificRole(res,id){
         })
        .map(
         (member) => `<@${member.user.id}>`
-        
+
       )}`,
       flags: 64,
             },
@@ -211,7 +211,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
         return tournamentList(res,tournament);
     }
     })
-    
+
 
     /*if(interaction.data.name == 'dm'){
       // https://discord.com/developers/docs/resources/user#create-dm
@@ -382,7 +382,7 @@ app.get('/register_commands', async (req,res) => {
       "description": "Retourne une liste de Sensei",
       "options": []
     },
-    
+
     /*{
       "name": "dm",
       "description": "sends user a DM",
@@ -390,7 +390,7 @@ app.get('/register_commands', async (req,res) => {
     }*/
   ];
 
-  tournaments.forEach( t => 
+  tournaments.forEach( t =>
       slash_commands.push({
         "name": `${t.name}_register`,
         "description":"je m'inscris au tournoi",
@@ -407,7 +407,7 @@ app.get('/register_commands', async (req,res) => {
         "options": []
       })
   );
-   
+
 
   try
   {
@@ -434,4 +434,3 @@ app.get('/', async (req,res) =>{
 app.listen(8999, () => {
 
 })
-
