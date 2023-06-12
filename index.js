@@ -28,7 +28,7 @@ const discord_api = axios.create({
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
 const challonge_api = axios.create({
-  baseURL: `https://api.challonge.com/v2/`,
+  baseURL: `https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v2/`,
   timeout: 10000,
   headers: {
   "Access-Control-Allow-Origin": "*",
@@ -76,7 +76,7 @@ async function sendMessageForSpecificRole(res,id){
 }
 
 async function tournamentList(res,tournament){
-      let response = (await challonge_api.get(`/tournaments.json?api_key=${CHALLONGE_API_KEY}`))
+      let response = (await challonge_api.get(`/tournaments.json`))
       console.log(`ALORS ? ${util.inspect(response)}`)
           return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
