@@ -72,11 +72,12 @@ async function sendMessageForSpecificRole(res,id){
           });
   }
       catch(e){
-      console.log(`MY ERROR ${e}`)
+      console.log(`MY sendMessageForSpecificRole ERROR ${e}`)
       }
 }
 
 async function tournamentList(res,tournament){
+  try{
       let response = (await challonge_api.get(`/tournaments.json`))
       console.log(`ALORS ? ${util.inspect(response)}`)
           return res.send({
@@ -88,6 +89,10 @@ async function tournamentList(res,tournament){
           });
 
       }
+      catch(e){
+      console.log(`MY tournamentList ERROR ${e}`)
+      }
+    }
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
