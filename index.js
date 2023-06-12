@@ -22,8 +22,9 @@ const discord_api = axios.create({
   headers: {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-  "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `Bot ${TOKEN}`
+  "Access-Control-Allow-Headers": "Authorization-Type",
+  "Accept": "application/json",
+  "Authorization-Type": "v1"
   }
 });
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
