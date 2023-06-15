@@ -46,13 +46,8 @@ const challonge_oauth_api = axios.create({
 });
 
 axios.post(
-  "https://api.challonge.com/oauth/token",
-  {
-      code:CHALLONGE_CLIENT_CODE,
-      client_id:CHALLONGE_CLIENT_ID,
-      grant_type:"authorization_code" ,
-      redirect_uri:"https://oauth.pstmn.io/v1/callback",
-  },
+  "https://api.challonge.com/oauth/token",{},
+  {code:CHALLONGE_CLIENT_CODE,client_id:CHALLONGE_CLIENT_ID,grant_type:"authorization_code",redirect_uri:"https://oauth.pstmn.io/v1/callback"},
 )
   .then(response => {
     console.log(`ALORS ? ${response.data}`);
