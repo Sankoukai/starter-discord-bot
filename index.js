@@ -47,7 +47,8 @@ const challonge_oauth_api = axios.create({
 
 challonge_oauth_api.post(
   "/oauth/token",
-    {
+  {},
+    params:{
       code: CHALLONGE_CLIENT_CODE ,
       client_id: CHALLONGE_CLIENT_ID ,
       grant_type: "authorization_code" ,
