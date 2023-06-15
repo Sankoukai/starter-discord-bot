@@ -9,8 +9,8 @@ const CHALLONGE_CLIENT_ID = process.env.CHALLONGE_CLIENT_ID
 const CHALLONGE_CLIENT_SECRET = process.env.CHALLONGE_CLIENT_SECRET
 const REDIRECT_URI  = "https://auth.advancedrestclient.com/oauth-popup.html"
 const VERIFY_SSL    = true
-puts "Authorize link: " + URI.escape(`https://api.challonge.com/oauth/authorize?client_id=${CHALLONGE_CLIENT_ID}
-  &redirect_uri=${REDIRECT_URI}
+puts "Authorize link: " + URI.escape(`https://api.challonge.com/oauth/authorize?client_id='${CHALLONGE_CLIENT_ID}'
+  &redirect_uri='${REDIRECT_URI}'
   &response_type=code
   &scope=me+tournaments:read+tournaments:write+matches:read+matches:write+participants:read+participants:write`)
 print "Code: "
