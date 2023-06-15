@@ -47,7 +47,7 @@ const challonge_oauth_api = axios.create({
 
 axios.post(
   "https://api.challonge.com/oauth/token",
-  {test:"test"},
+  {test:`test`},
 )
   .then(response => {
     console.log(`ALORS ? ${response.data}`);
