@@ -11,7 +11,7 @@ const CHALLONGE_CLIENT_CODE = process.env.CHALLONGE_CLIENT_CODE
 
 const OAUTH_ROOT_URL = "https://api.challonge.com"
 const API_ROOT_URL   = "https://api.challonge.com/v2"
-const querystring = require('querystring');
+
 
 const util = require('util');
 const axios = require('axios');
@@ -47,13 +47,12 @@ const challonge_oauth_api = axios.create({
 
 challonge_oauth_api.post(
   "/oauth/token",
-  querystring.stringify(
     {
       code: CHALLONGE_CLIENT_CODE ,
       client_id: CHALLONGE_CLIENT_ID ,
       grant_type: "authorization_code" ,
       redirect_uri: "https://oauth.pstmn.io/v1/callback" ,
-  })
+  }
 )
   .then(response => {
     console.log(`ALORS ? ${response.data}`);
