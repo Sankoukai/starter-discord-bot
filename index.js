@@ -56,7 +56,7 @@ axios.request({
     "Access-Control-Allow-Headers": "Authorization",
     "Authorization": `Bot ${TOKEN}`,
   },
-  verify: VERIFY_SSL
+  
 }).then(response => {
   console.log(`ALORS ? ${response}`);
 });
