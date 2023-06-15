@@ -37,26 +37,19 @@ const discord_api = axios.create({
   }
 });
 
+var bodyFormData = new FormData();
+bodyFormData.append('client_id', CHALLONGE_CLIENT_ID);
+bodyFormData.append('client_secret', CHALLONGE_CLIENT_SECRET);
+bodyFormData.append('grant_type', 'authorization_code');
+bodyFormData.append('code', '28127a4b5c9aa00be6b369f457d583f696963221de25e480650255e4a74d4c4d');
+bodyFormData.append('client_id', "https://oauth.pstmn.io/v1/callback");
+
 axios.request({
   url: "/oauth/token",
   method: "post",
   baseURL: `${OAUTH_ROOT_URL}`,
-  body: {
-    client_id: CHALLONGE_CLIENT_ID,
-    client_secret: CHALLONGE_CLIENT_SECRET,
-    grant_type: "authorization_code",
-    code: AUTH_CODE,
-    redirect_uri: REDIRECT_URI
-  },
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-    "Access-Control-Allow-Headers": "Authorization-Type",
-    "Access-Control-Allow-Headers": "Authorization",
-    "Authorization": `Bot ${TOKEN}`,
-  },
-  
+  data: bodyFormData,
+  headers: { "Content-Type": "multipart/form-data" },
 }).then(response => {
   console.log(`ALORS ? ${response}`);
 });
