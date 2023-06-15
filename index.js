@@ -47,13 +47,17 @@ const challonge_oauth_api = axios.create({
 
 challonge_oauth_api.post(
   "/oauth/token",
-  {},
+  {},{
+    headers:{
+      "Content-Type": "application/json; charset=UTF-8"
+    },
     params:{
-      code: CHALLONGE_CLIENT_CODE ,
-      client_id: CHALLONGE_CLIENT_ID ,
-      grant_type: "authorization_code" ,
-      redirect_uri: "https://oauth.pstmn.io/v1/callback" ,
+      "code": CHALLONGE_CLIENT_CODE ,
+      "client_id": CHALLONGE_CLIENT_ID ,
+      "grant_type": "authorization_code" ,
+      "redirect_uri": "https://oauth.pstmn.io/v1/callback" ,
   }
+}
 )
   .then(response => {
     console.log(`ALORS ? ${response.data}`);
