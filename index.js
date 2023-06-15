@@ -73,7 +73,7 @@ bodyFormData.append('response_type', 'code');
 bodyFormData.append('client_id', "https://oauth.pstmn.io/v1/callback");
 // curl --location 'https://api.challonge.com/oauth/authorize?scope=me%20tournaments%3Aread%20matches%3Aread%20participants%3Aread&client_id=2b1b111ae6ac0fbd98c1207fd3a066cfa839c2854c11f8dd1cdec40ffbef1818&redirect_uri=https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fcallback&response_type=code'
 challonge_oauth_api.get(`/oauth/authorize?scope=me tournaments:read matches:read participants:read&client_id=${CHALLONGE_CLIENT_ID}&redirect_uri=https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fcallback&response_type=code`).then(response => {
-  console.log(`ALORS ? ${response}`);
+  console.log(`ALORS ? ${util.inspect(response)}`);
 });
 
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
@@ -478,7 +478,7 @@ app.get('/register_commands', async (req,res) => {
       `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
       slash_commands
     )
-    console.log(discord_response.data)
+    //console.log(discord_response.data)
     return res.send('commands have been registered')
   }catch(e){
     console.error(e.code)
