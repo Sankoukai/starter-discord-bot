@@ -13,7 +13,7 @@ puts `Authorize link: https://api.challonge.com/oauth/authorize?client_id=${CHAL
   &redirect_uri=${REDIRECT_URI}
   &response_type=code
   &scope=me+tournaments:read+tournaments:write+matches:read+matches:write+participants:read+participants:write`
-print "Code: "
+
 code = gets.chomp
 require('dotenv').config()
 
