@@ -147,7 +147,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           {
             code:CHALLONGE_CLIENT_CODE,
             client_id:CHALLONGE_CLIENT_ID,
-            client_secret: CHALLONGE_CLIENT_SECRET,
+            client_secret:CHALLONGE_CLIENT_SECRET,
             grant_type:"authorization_code",
             redirect_uri:"https://oauth.pstmn.io/v1/callback"},
         )
