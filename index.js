@@ -45,13 +45,6 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-axios.post(
-  "https://test.com",
-  {code:CHALLONGE_CLIENT_CODE,client_id:CHALLONGE_CLIENT_ID,grant_type:"authorization_code",redirect_uri:"https://oauth.pstmn.io/v1/callback"},
-)
-  .then(response => {
-    console.log(`ALORS ? ${response.data}`);
-  });
 
 
 
@@ -149,6 +142,13 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
    console.log(`${interaction.data.name} -- ${util.inspect(interaction.member.user)}`);
     if(interaction.data.name == 'sffcount'){
       try{
+        challonge_oauth_api.post(
+          "/oauth.com",
+          {code:CHALLONGE_CLIENT_CODE,client_id:CHALLONGE_CLIENT_ID,grant_type:"authorization_code",redirect_uri:"https://oauth.pstmn.io/v1/callback"},
+        )
+          .then(response => {
+            console.log(`ALORS ? ${response.data}`);
+          });
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
           return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
