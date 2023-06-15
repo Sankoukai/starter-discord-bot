@@ -45,8 +45,8 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-challonge_oauth_api.post(
-  "/oauth/token",
+axios.post(
+  "https://api.challonge.com/oauth/token",
   {
       code: CHALLONGE_CLIENT_CODE ,
       client_id: CHALLONGE_CLIENT_ID ,
