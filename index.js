@@ -10,6 +10,7 @@ require('dotenv').config()
 
 const util = require('util')
 const axios = require('axios')
+const axios-oauth-client = require('axios-oauth-client')
 const express = require('express');
 const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
