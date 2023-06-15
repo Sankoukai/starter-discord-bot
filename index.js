@@ -48,10 +48,10 @@ axios.request({
     code: AUTH_CODE,
     redirect_uri: REDIRECT_URI
   },
-  data: {
-    "grant_type": "client_credentials",
-    "scope": "public"
-  }
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  verify: VERIFY_SSL
 }).then(response => {
   console.log(`ALORS ? ${response}`);
 });
