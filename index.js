@@ -5,12 +5,16 @@ const PUBLIC_KEY = process.env.PUBLIC_KEY || 'not set'
 const GUILD_ID = process.env.GUILD_ID
 const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY
 const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME
+const CHALLONGE_CLIENT_ID = process.env.CHALLONGE_CLIENT_ID
+const CHALLONGE_CLIENT_SECRET = process.env.CHALLONGE_CLIENT_SECRET
 
 require('dotenv').config()
 
-const util = require('util')
-const axios = require('axios')
-const axios-oauth-client = require('axios-oauth-client')
+const OAUTH_ROOT_URL = "https://api.challonge.com"
+const API_ROOT_URL   = "https://api.challonge.com/v2"
+
+const util = require('util');
+const axios = require('axios');
 const express = require('express');
 const { InteractionType, InteractionResponseType, verifyKeyMiddleware } = require('discord-interactions');
 
@@ -28,6 +32,23 @@ const discord_api = axios.create({
   "Authorization": `Bot ${TOKEN}`,
   }
 });
+
+axios.request({
+  url: "/oauth/token",
+  method: "post",
+  baseURL: `${OAUTH_ROOT_URL}`,
+  auth: {
+    username: `${CHALLONGE_CLIENT_ID}`, // This is the client_id
+    password: `${CHALLONGE_CLIENT_SECRET}` // This is the client_secret
+  },
+  data: {
+    "grant_type": "authorization_code",
+    "scope": "public"
+  }
+}).then(response => {
+  console.log(`ALORS ? ${response}`);
+});
+
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
 /*const challonge_api = axios.create({
   baseURL: `https://api.challonge.com/v2/`,
