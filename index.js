@@ -7,12 +7,7 @@ const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY
 const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME
 const CHALLONGE_CLIENT_ID = process.env.CHALLONGE_CLIENT_ID
 const CHALLONGE_CLIENT_SECRET = process.env.CHALLONGE_CLIENT_SECRET
-const REDIRECT_URI  = "https://auth.advancedrestclient.com/oauth-popup.html"
-const VERIFY_SSL    = true
-const AUTH_CODE =  `Authorize link: https://api.challonge.com/oauth/authorize?client_id=${CHALLONGE_CLIENT_ID}
-  &redirect_uri=${REDIRECT_URI}
-  &response_type=code
-  &scope=me+tournaments:read+tournaments:write+matches:read+matches:write+participants:read+participants:write`
+const CHALLONGE_CLIENT_CODE = process.env.CHALLONGE_CLIENT_CODE
 
 const OAUTH_ROOT_URL = "https://api.challonge.com"
 const API_ROOT_URL   = "https://api.challonge.com/v2"
@@ -48,12 +43,12 @@ const challonge_oauth_api = axios.create({
   "Authorization": `Bot ${TOKEN}`,
   }
 });
-/*
+
 var bodyFormData = new FormData();
 bodyFormData.append('client_id', CHALLONGE_CLIENT_ID);
 bodyFormData.append('client_secret', CHALLONGE_CLIENT_SECRET);
 bodyFormData.append('grant_type', 'authorization_code');
-bodyFormData.append('code', '28127a4b5c9aa00be6b369f457d583f696963221de25e480650255e4a74d4c4d');
+bodyFormData.append('code', CHALLONGE_CLIENT_CODE);
 bodyFormData.append('client_id', "https://oauth.pstmn.io/v1/callback");
 
 axios.request({
@@ -64,7 +59,7 @@ axios.request({
   headers: { "Content-Type": "multipart/form-data" },
 }).then(response => {
   console.log(`ALORS ? ${response}`);
-});*/
+});
 
 /*var bodyFormData = new FormData();
 bodyFormData.append('client_id', CHALLONGE_CLIENT_ID);
@@ -76,9 +71,9 @@ challonge_oauth_api.get(`/oauth/authorize?scope=me tournaments:read participants
   console.log(`ALORS ? ${util.inspect(response.data)}`);
 });*/
 
-challonge_oauth_api.get(`/v2/tournaments.json`).then(response => {
+/*challonge_oauth_api.get(`/v2/tournaments.json`).then(response => {
   console.log(`ALORS ? ${util.inspect(response.data)}`);
-});
+});*/
 
 //https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
 /*const challonge_api = axios.create({
