@@ -49,7 +49,12 @@ axios.request({
     redirect_uri: REDIRECT_URI
   },
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Headers": "Authorization-Type",
+    "Access-Control-Allow-Headers": "Authorization",
+    "Authorization": `Bot ${TOKEN}`,
   },
   verify: VERIFY_SSL
 }).then(response => {
