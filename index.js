@@ -76,7 +76,7 @@ challonge_oauth_api.get(`/oauth/authorize?scope=me tournaments:read participants
   console.log(`ALORS ? ${util.inspect(response.data)}`);
 });*/
 
-challonge_api.get(`/v2/tournaments.json`).then(response => {
+challonge_oauth_api.get(`/v2/tournaments.json`).then(response => {
   console.log(`ALORS ? ${util.inspect(response.data)}`);
 });
 
