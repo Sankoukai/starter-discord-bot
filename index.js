@@ -7,7 +7,7 @@ const CHALLONGE_API_KEY = process.env.CHALLONGE_API_KEY
 const CHALLONGE_USER_NAME = process.env.CHALLONGE_USER_NAME
 const CHALLONGE_CLIENT_ID = process.env.CHALLONGE_CLIENT_ID
 const CHALLONGE_CLIENT_SECRET = process.env.CHALLONGE_CLIENT_SECRET
-const REDIRECT_URI  = "https://auth.advancedrestclient.com/oauth-popup.html" # for debugging, it just displays the resulting code
+const REDIRECT_URI  = "https://auth.advancedrestclient.com/oauth-popup.html"
 const VERIFY_SSL    = true
 puts "Authorize link: " + URI.escape(`https://api.challonge.com/oauth/authorize?client_id=${CHALLONGE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=me+tournaments:read+tournaments:write+matches:read+matches:write+participants:read+participants:write`)
 print "Code: "
