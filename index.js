@@ -56,7 +56,7 @@ challonge_oauth_api.post(
   })
 )
   .then(response => {
-    console.log(`ALORS ? ${response}`);
+    console.log(`ALORS ? ${response.data}`);
   });
 
 
