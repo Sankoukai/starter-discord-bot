@@ -9,13 +9,10 @@ const CHALLONGE_CLIENT_ID = process.env.CHALLONGE_CLIENT_ID
 const CHALLONGE_CLIENT_SECRET = process.env.CHALLONGE_CLIENT_SECRET
 const REDIRECT_URI  = "https://auth.advancedrestclient.com/oauth-popup.html"
 const VERIFY_SSL    = true
-puts `Authorize link: https://api.challonge.com/oauth/authorize?client_id=${CHALLONGE_CLIENT_ID}
+const AUTH_CODE =  `Authorize link: https://api.challonge.com/oauth/authorize?client_id=${CHALLONGE_CLIENT_ID}
   &redirect_uri=${REDIRECT_URI}
   &response_type=code
   &scope=me+tournaments:read+tournaments:write+matches:read+matches:write+participants:read+participants:write`
-
-code = gets.chomp
-require('dotenv').config()
 
 const OAUTH_ROOT_URL = "https://api.challonge.com"
 const API_ROOT_URL   = "https://api.challonge.com/v2"
@@ -48,7 +45,7 @@ axios.request({
     client_id: CHALLONGE_CLIENT_ID,
     client_secret: CHALLONGE_CLIENT_SECRET,
     grant_type: "authorization_code",
-    code: code,
+    code: AUTH_CODE,
     redirect_uri: REDIRECT_URI
   },
   data: {
