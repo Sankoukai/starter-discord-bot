@@ -104,7 +104,7 @@ async function sendMessageForSpecificRole(res,id){
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
-   console.log(`${interaction.data.name} -- ${util.inspect(req)}`);
+   console.log(`${interaction.data.name} -- ${util.inspect(interaction.member.user)}`);
     if(interaction.data.name == 'sffcount'){
       try{
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
