@@ -38,8 +38,8 @@ axios.request({
   method: "post",
   baseURL: `${OAUTH_ROOT_URL}`,
   auth: {
-    username: `${CHALLONGE_CLIENT_ID}`, // This is the client_id
-    password: `${CHALLONGE_CLIENT_SECRET}` // This is the client_secret
+    client_id: `${CHALLONGE_CLIENT_ID}`, // This is the client_id
+    client_secret: `${CHALLONGE_CLIENT_SECRET}` // This is the client_secret
   },
   data: {
     "grant_type": "authorization_code",
