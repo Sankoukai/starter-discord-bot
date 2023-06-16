@@ -192,6 +192,9 @@ const slash_commands = [{
 },
 ];
 
+function addTournamentCommand(command){
+    slash_commands.push(command)
+}
 
 async function sendMessageForSpecificRole(res,id){
   try{
@@ -435,11 +438,13 @@ app.get('/register_commands', async (req,res) => {
           }
         ).then(responsee => {
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                slash_commands.push({
-                  "name": `${tournament.toLowerCase()}_register`,
-                  "description":"je m'inscris au tournoi",
-                  "options": []
-                },
+                addTournamentCommand(
+                  {
+                    "name": `${tournament.toLowerCase()}_register`,
+                    "description":"je m'inscris au tournoi",
+                    "options": []
+                  }
+                )
                 /*{
                   "name": `${t.name}_unregister`,
                   "description":"je me désinscris du tournoi",
@@ -449,7 +454,7 @@ app.get('/register_commands', async (req,res) => {
                   "name": `${t.name}_list`,
                   "description":"voir la liste des participants",
                   "options": []
-                }*/);
+                }*/
               })
               //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
 
