@@ -156,7 +156,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
                   "Authorization-Type":"v2",
                   Bearer:responseee.data.access_token,
                   "Content-Type":"application/vnd.api+json",
-                  Accept,"application/json"
+                  Accept:"application/json"
                 }
               }
             ).then(responsee => {
