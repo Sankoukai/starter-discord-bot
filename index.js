@@ -165,6 +165,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
           scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
         },
       ).then(responseee => {
+        console.log(`ALORS1 ? ${util.inspect(responseee.data)}`)
             challonge_oauth_api.get("/v2/application/tournaments.json",{
               headers:{
                 "Authorization-Type":"v1",
@@ -174,7 +175,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
               }
             }
           ).then(responsee => {
-                console.log(`ALORS ? ${util.inspect(responsee.data)}`)
+                console.log(`ALORS2 ? ${util.inspect(responsee.data)}`)
                 return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                  data: {
