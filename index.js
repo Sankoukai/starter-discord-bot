@@ -151,7 +151,13 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
           },
         ).then(response => {
-            console.log(`ALORS ? ${response.data.access_token}`);
+
+              challonge_oauth_api.get("/v2/application/tournaments.json",
+                headers:{
+                  Bearer:response.data.access_token
+                }
+          }).then(response => {
+                  console.log(`ALORS ? ${util.inspect(response.data)}`);
           });
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
           return res.send({
