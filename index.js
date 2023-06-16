@@ -151,9 +151,9 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
           },
         ).then(responseee => {
-              challonge_oauth_api.get("/v2/application/tournaments.json",{
+              challonge_oauth_api.get("/v1/application/tournaments.json",{
                 headers:{
-                  "Authorization-Type":"v2",
+                  "Authorization-Type":"v1",
                   'Authorization': 'Bearer ' +responseee.data.access_token,
                   "Content-Type":"application/vnd.api+json",
                   "Accept":"application/json"
