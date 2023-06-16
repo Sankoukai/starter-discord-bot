@@ -154,7 +154,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
               challonge_oauth_api.get("/v2/application/tournaments.json",{
                 headers:{
                   "Authorization-Type":"v2",
-                  "Bearer":responseee.data.access_token,
+                  'Authorization': 'Bearer ' +responseee.data.access_token,
                   "Content-Type":"application/vnd.api+json",
                   "Accept":"application/json"
                 }
