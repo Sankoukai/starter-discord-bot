@@ -150,10 +150,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             grant_type:"client_credentials",
             scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
           },
-        ).then(response => {
+        ).then(responseee => {
               challonge_oauth_api.get("/v2/application/tournaments.json",{
                 headers:{
-                  Bearer:response.data.access_token
+                  Bearer:responseee.data.access_token
                 }
               }
             ).then(responsee => {
