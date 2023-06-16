@@ -151,10 +151,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
           },
         ).then(response => {
-              challonge_oauth_api.get("/v2/application/tournaments.json",
+              challonge_oauth_api.get("/v2/application/tournaments.json",{
                 headers:{
                   Bearer:response.data.access_token
                 }
+              }
               ).then(response => {
                   console.log(`ALORS ? ${util.inspect(response.data)}`);
           })
