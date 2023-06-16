@@ -46,17 +46,6 @@ const challonge_oauth_api = axios.create({
 });
 
 
-
-class Tournament{
-  constructor(id,name){
-    this.id = id;
-    this.name = name;
-  }
-
-};
-
-const tournaments = [new Tournament("213123","tournoi1"),new Tournament("21323","tournoi2")];*/
-
 async function sendMessageForSpecificRole(res,id){
   try{
      let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
