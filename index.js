@@ -418,48 +418,46 @@ app.get('/register_commands', async (req,res) => {
     }*/
   ];
 
-
-  challonge_oauth_api.post(
-    "/oauth/token",
-    {
-      client_secret:CHALLONGE_CLIENT_SECRET,
-      client_id:CHALLONGE_CLIENT_ID,
-      grant_type:"client_credentials",
-      scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-    },
-  ).then(responseee => {
-        challonge_oauth_api.get("/v2/application/tournaments.json",{
-          headers:{
-            "Authorization-Type":"v2",
-            'Authorization': 'Bearer ' +responseee.data.access_token,
-            "Content-Type":"application/vnd.api+json",
-            "Accept":"application/json"
-          }
-        }
-      ).then(responsee => {
-            responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                  console.log(`slash_commands.push => ${tournament}`)
-              slash_commands.push({
-                "name": `${tournament}_register`,
-                "description":"je m'inscris au tournoi",
-                "options": []
-              },
-              /*{
-                "name": `${t.name}_unregister`,
-                "description":"je me désinscris du tournoi",
-                "options": []
-              },
-              {
-                "name": `${t.name}_list`,
-                "description":"voir la liste des participants",
-                "options": []
-              }*/)
-            })
-          })
-    });
-
   try
   {
+    await challonge_oauth_api.post(
+      "/oauth/token",
+      {
+        client_secret:CHALLONGE_CLIENT_SECRET,
+        client_id:CHALLONGE_CLIENT_ID,
+        grant_type:"client_credentials",
+        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      },
+    ).then(responseee => {
+          challonge_oauth_api.get("/v2/application/tournaments.json",{
+            headers:{
+              "Authorization-Type":"v2",
+              'Authorization': 'Bearer ' +responseee.data.access_token,
+              "Content-Type":"application/vnd.api+json",
+              "Accept":"application/json"
+            }
+          }
+        ).then(responsee => {
+              responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
+                    console.log(`slash_commands.push => ${tournament}`)
+                slash_commands.push({
+                  "name": `${tournament}_register`,
+                  "description":"je m'inscris au tournoi",
+                  "options": []
+                },
+                /*{
+                  "name": `${t.name}_unregister`,
+                  "description":"je me désinscris du tournoi",
+                  "options": []
+                },
+                {
+                  "name": `${t.name}_list`,
+                  "description":"voir la liste des participants",
+                  "options": []
+                }*/)
+              })
+            })
+      });
     // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
     let discord_response = await discord_api.put(
       `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
