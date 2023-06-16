@@ -420,7 +420,7 @@ app.get('/register_commands', async (req,res) => {
 
   try
   {
-    await challonge_oauth_api.post(
+    challonge_oauth_api.post(
       "/oauth/token",
       {
         client_secret:CHALLONGE_CLIENT_SECRET,
@@ -457,14 +457,15 @@ app.get('/register_commands', async (req,res) => {
                 }*/)
               })
             })
+      }).then(r => {
+            // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+        let discord_response = await discord_api.put(
+          `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
+          slash_commands
+        )
+        //console.log(discord_response.data)
+        return res.send('commands have been registered')
       });
-    // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
-    let discord_response = await discord_api.put(
-      `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
-      slash_commands
-    )
-    //console.log(discord_response.data)
-    return res.send('commands have been registered')
   }catch(e){
     console.error(e.code)
     console.error(e.response?.data)
