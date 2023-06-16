@@ -175,11 +175,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
               }
             }
           ).then(responsee => {
-                console.log(`ALORS2 ? ${util.inspect(responsee.data)}`)
+                console.log(`ALORS2 ? ${util.inspect(responsee.data.data)}`)
                 return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                  data: {
-                    content: `test`,
+                    content: `Tournois: ${responsee.data.data}`,
                     flags: 64,
                   },
                 });
