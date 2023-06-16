@@ -45,7 +45,7 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-var slash_commands = [
+let slash_commands = [
 {
   "name": "sffcount",
   "description": "Retourne le nombre de membres SFF!",
@@ -420,7 +420,6 @@ app.get('/register_commands', async (req,res) => {
 
   try
   {
-    slash_commands = [];
     challonge_oauth_api.post(
       "/oauth/token",
       {
