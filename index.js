@@ -156,8 +156,8 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
                   Bearer:response.data.access_token
                 }
               }
-              ).then(response => {
-                  console.log(`ALORS ? ${util.inspect(response.data)}`)
+            ).then(responsee => {
+                  console.log(`ALORS ? ${util.inspect(responsee.data)}`)
           });
 
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
