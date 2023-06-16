@@ -179,7 +179,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
                 return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                  data: {
-                    content: `Tournois: ${responsee.data.data}`,
+                    content: `Tournois: ${responsee.data.data.map(tournoi => tournoi.id)}`,
                     flags: 64,
                   },
                 });
