@@ -268,7 +268,7 @@ app.get('/register_commands', async (req,res) => {
 
   try
   {
-    var slash_commands = [];
+    const slash_commands = [];
     challonge_oauth_api.post(
       "/oauth/token",
       {
