@@ -455,11 +455,12 @@ app.get('/register_commands', async (req,res) => {
                   "options": []
                 }*/)
               })
-              console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
+              //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
 
             })
       }).then(r => {
             // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+            console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
         discord_api.put(
           `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
           slash_commands
