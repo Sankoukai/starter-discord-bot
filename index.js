@@ -428,7 +428,6 @@ app.get('/register_commands', async (req,res) => {
       scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
     },
   ).then(responseee => {
-    console.log(`ALORS1 ? ${util.inspect(responseee.data)}`)
         challonge_oauth_api.get("/v2/application/tournaments.json",{
           headers:{
             "Authorization-Type":"v2",
@@ -439,6 +438,7 @@ app.get('/register_commands', async (req,res) => {
         }
       ).then(responsee => {
             responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
+                  console.log(`slash_commands.push => ${tournament}`)
               slash_commands.push({
                 "name": `${tournament}_register`,
                 "description":"je m'inscris au tournoi",
