@@ -268,159 +268,7 @@ app.get('/register_commands', async (req,res) => {
 
   try
   {
-    var slash_commands = [
-      {
-        "name": "sffcount",
-        "description": "Retourne le nombre de membres SFF!",
-        "options": []
-      },
-      {
-        "name": "test",
-        "description": "test",
-        "options": []
-      },
-      {
-        "name": "cammy",
-        "description": "Retourne une liste de joueur jouant Cammy",
-        "options": []
-      },
-      {
-        "name": "deejay",
-        "description": "Retourne une liste de joueur jouant Deejay",
-        "options": []
-      },
-      {
-        "name": "honda",
-        "description": "Retourne une liste de joueur jouant Honda",
-        "options": []
-      },
-      {
-        "name": "ryu",
-        "description": "Retourne une liste de joueur jouant Ryu",
-        "options": []
-      },
-      {
-        "name": "ken",
-        "description": "Retourne une liste de joueur jouant Ken",
-        "options": []
-      },
-      {
-        "name": "guile",
-        "description": "Retourne une liste de joueur jouant Guile",
-        "options": []
-      },
-      {
-        "name": "dhalsim",
-        "description": "Retourne une liste de joueur jouant Dhalsim",
-        "options": []
-      },
-      {
-        "name": "chunli",
-        "description": "Retourne une liste de joueur jouant Chunli",
-        "options": []
-      },
-      {
-        "name": "marisa",
-        "description": "Retourne une liste de joueur jouant Marisa",
-        "options": []
-      },
-      {
-        "name": "manon",
-        "description": "Retourne une liste de joueur jouant Manon",
-        "options": []
-      },
-      {
-        "name": "jamie",
-        "description": "Retourne une liste de joueur jouant Jamie",
-        "options": []
-      },
-      {
-        "name": "kimberly",
-        "description": "Retourne une liste de joueur jouant Kimberly",
-        "options": []
-      },
-       {
-        "name": "luke",
-        "description": "Retourne une liste de joueur jouant Luke",
-        "options": []
-      },
-      {
-        "name": "blanka",
-        "description": "Retourne une liste de joueur jouant Blanka",
-        "options": []
-      },
-      {
-        "name": "juri",
-        "description": "Retourne une liste de joueur jouant Juri",
-        "options": []
-      },
-      {
-        "name": "jp",
-        "description": "Retourne une liste de joueur jouant Jp",
-        "options": []
-      },
-      {
-        "name": "lily",
-        "description": "Retourne une liste de joueur jouant Lily",
-        "options": []
-      },
-      {
-        "name": "zangief",
-        "description": "Retourne une liste de joueur jouant Zangief",
-        "options": []
-      },
-      {
-        "name": "sac",
-        "description": "Retourne une liste de joueur niveau Sac",
-        "options": []
-      },
-      {
-        "name": "iron",
-        "description": "Retourne une liste de joueur niveau Iron",
-        "options": []
-      },
-      {
-        "name": "bronze",
-        "description": "Retourne une liste de joueur niveau Bronze",
-        "options": []
-      },
-      {
-        "name": "silver",
-        "description": "Retourne une liste de joueur niveau Silver",
-        "options": []
-      },
-      {
-        "name": "gold",
-        "description": "Retourne une liste de joueur niveau Gold",
-        "options": []
-      },
-      {
-        "name": "platinum",
-        "description": "Retourne une liste de joueur niveau Platinum",
-        "options": []
-      },
-      {
-        "name": "diamond",
-        "description": "Retourne une liste de joueur niveau Diamond",
-        "options": []
-      },
-      {
-        "name": "master",
-        "description": "Retourne une liste de joueur niveau Master",
-        "options": []
-      },
-      {
-        "name": "sensei",
-        "description": "Retourne une liste de Sensei",
-        "options": []
-      },
-
-      /*{
-        "name": "dm",
-        "description": "sends user a DM",
-        "options": []
-      }*/
-    ];
+    var slash_commands = [];
     challonge_oauth_api.post(
       "/oauth/token",
       {
@@ -457,6 +305,158 @@ app.get('/register_commands', async (req,res) => {
                 }*/);
               })
               //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
+              slash_commands.push(
+              {
+                "name": "sffcount",
+                "description": "Retourne le nombre de membres SFF!",
+                "options": []
+              },
+              {
+                "name": "test",
+                "description": "test",
+                "options": []
+              },
+              {
+                "name": "cammy",
+                "description": "Retourne une liste de joueur jouant Cammy",
+                "options": []
+              },
+              {
+                "name": "deejay",
+                "description": "Retourne une liste de joueur jouant Deejay",
+                "options": []
+              },
+              {
+                "name": "honda",
+                "description": "Retourne une liste de joueur jouant Honda",
+                "options": []
+              },
+              {
+                "name": "ryu",
+                "description": "Retourne une liste de joueur jouant Ryu",
+                "options": []
+              },
+              {
+                "name": "ken",
+                "description": "Retourne une liste de joueur jouant Ken",
+                "options": []
+              },
+              {
+                "name": "guile",
+                "description": "Retourne une liste de joueur jouant Guile",
+                "options": []
+              },
+              {
+                "name": "dhalsim",
+                "description": "Retourne une liste de joueur jouant Dhalsim",
+                "options": []
+              },
+              {
+                "name": "chunli",
+                "description": "Retourne une liste de joueur jouant Chunli",
+                "options": []
+              },
+              {
+                "name": "marisa",
+                "description": "Retourne une liste de joueur jouant Marisa",
+                "options": []
+              },
+              {
+                "name": "manon",
+                "description": "Retourne une liste de joueur jouant Manon",
+                "options": []
+              },
+              {
+                "name": "jamie",
+                "description": "Retourne une liste de joueur jouant Jamie",
+                "options": []
+              },
+              {
+                "name": "kimberly",
+                "description": "Retourne une liste de joueur jouant Kimberly",
+                "options": []
+              },
+               {
+                "name": "luke",
+                "description": "Retourne une liste de joueur jouant Luke",
+                "options": []
+              },
+              {
+                "name": "blanka",
+                "description": "Retourne une liste de joueur jouant Blanka",
+                "options": []
+              },
+              {
+                "name": "juri",
+                "description": "Retourne une liste de joueur jouant Juri",
+                "options": []
+              },
+              {
+                "name": "jp",
+                "description": "Retourne une liste de joueur jouant Jp",
+                "options": []
+              },
+              {
+                "name": "lily",
+                "description": "Retourne une liste de joueur jouant Lily",
+                "options": []
+              },
+              {
+                "name": "zangief",
+                "description": "Retourne une liste de joueur jouant Zangief",
+                "options": []
+              },
+              {
+                "name": "sac",
+                "description": "Retourne une liste de joueur niveau Sac",
+                "options": []
+              },
+              {
+                "name": "iron",
+                "description": "Retourne une liste de joueur niveau Iron",
+                "options": []
+              },
+              {
+                "name": "bronze",
+                "description": "Retourne une liste de joueur niveau Bronze",
+                "options": []
+              },
+              {
+                "name": "silver",
+                "description": "Retourne une liste de joueur niveau Silver",
+                "options": []
+              },
+              {
+                "name": "gold",
+                "description": "Retourne une liste de joueur niveau Gold",
+                "options": []
+              },
+              {
+                "name": "platinum",
+                "description": "Retourne une liste de joueur niveau Platinum",
+                "options": []
+              },
+              {
+                "name": "diamond",
+                "description": "Retourne une liste de joueur niveau Diamond",
+                "options": []
+              },
+              {
+                "name": "master",
+                "description": "Retourne une liste de joueur niveau Master",
+                "options": []
+              },
+              {
+                "name": "sensei",
+                "description": "Retourne une liste de Sensei",
+                "options": []
+              },);
+
+              /*{
+                "name": "dm",
+                "description": "sends user a DM",
+                "options": []
+              }*/
 
             })
       }).then(r => {
