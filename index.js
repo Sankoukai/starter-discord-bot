@@ -35,7 +35,7 @@ const discord_api = axios.create({
 
 const challonge_oauth_api = axios.create({
   baseURL: 'https://api.challonge.com',
-  timeout: 10000,
+  timeout: 30000,
   headers: {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
@@ -45,7 +45,27 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-
+challonge_oauth_api.post(
+  "/oauth/token",
+  {
+    client_secret:CHALLONGE_CLIENT_SECRET,
+    client_id:CHALLONGE_CLIENT_ID,
+    grant_type:"client_credentials",
+    scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+  },
+).then(responseee => {
+      challonge_oauth_api.get("/v2/application/tournaments.json",{
+        headers:{
+          "Authorization-Type":"v1",
+          'Authorization': 'Bearer ' +responseee.data.access_token,
+          "Content-Type":"application/vnd.api+json",
+          "Accept":"application/json"
+        }
+      }
+    ).then(responsee => {
+          console.log(`ALORS ? ${util.inspect(responsee.data)}`)
+        })
+  });
 
 
 /*var bodyFormData = new FormData();
@@ -142,28 +162,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
    console.log(`${interaction.data.name} -- ${util.inspect(interaction.member.user)}`);
     if(interaction.data.name == 'sffcount'){
       try{
-        challonge_oauth_api.post(
-          "/oauth/token",
-          {
-            client_secret:CHALLONGE_CLIENT_SECRET,
-            client_id:CHALLONGE_CLIENT_ID,
-            grant_type:"client_credentials",
-            scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-          },
-        ).then(responseee => {
-              challonge_oauth_api.get("/v2/application/tournaments.json",{
-                headers:{
-                  "Authorization-Type":"v1",
-                  'Authorization': 'Bearer ' +responseee.data.access_token,
-                  "Content-Type":"application/vnd.api+json",
-                  "Accept":"application/json"
-                }
-              }
-            ).then(responsee => {
-                  console.log(`ALORS ? ${util.inspect(responsee.data)}`)
-                })
-          });
-
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
           return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
