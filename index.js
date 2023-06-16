@@ -473,7 +473,7 @@ app.get('/register_commands', async (req,res) => {
             //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
         discord_api.put(
           `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
-          /*slash_commands*/[]
+          slash_commands
         ).then(responsee => {
         //console.log(discord_response.data)
         return res.send('commands have been registered')
