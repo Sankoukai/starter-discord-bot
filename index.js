@@ -455,7 +455,7 @@ app.get('/register_commands', async (req,res) => {
                   "options": []
                 }*/)
               })
-              console.log(`slash_commands.push => ${slash_commands}`)
+              console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
 
             })
       }).then(r => {
