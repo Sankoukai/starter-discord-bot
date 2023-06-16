@@ -45,7 +45,8 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-const slash_commands = [{
+const slash_commands = [
+{
   "name": "sffcount",
   "description": "Retourne le nombre de membres SFF!",
   "options": []
@@ -193,6 +194,7 @@ const slash_commands = [{
 ];
 
 function addTournamentCommand(command){
+    console.log(`slash ? ${slash_commands} -- ${command}`)
     slash_commands.push(command)
 }
 
