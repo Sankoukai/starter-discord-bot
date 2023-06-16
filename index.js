@@ -47,43 +47,6 @@ const challonge_oauth_api = axios.create({
 
 
 
-
-/*var bodyFormData = new FormData();
-bodyFormData.append('client_id', CHALLONGE_CLIENT_ID);
-bodyFormData.append('scope', 'me%20tournaments:read%20matches:read%20participants:read');
-bodyFormData.append('response_type', 'code');
-bodyFormData.append('client_id', "https://oauth.pstmn.io/v1/callback");
-// curl --location 'https://api.challonge.com/oauth/authorize?scope=me%20tournaments%3Aread%20matches%3Aread%20participants%3Aread&client_id=2b1b111ae6ac0fbd98c1207fd3a066cfa839c2854c11f8dd1cdec40ffbef1818&redirect_uri=https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fcallback&response_type=code'
-challonge_oauth_api.get(`/oauth/authorize?scope=me tournaments:read participants:write&client_id=${CHALLONGE_CLIENT_ID}&redirect_uri=https://oauth.pstmn.io/v1/callback&response_type=code`).then(response => {
-  console.log(`ALORS ? ${util.inspect(response.data)}`);
-});*/
-
-/*challonge_oauth_api.get(`/v2/tournaments.json`).then(response => {
-  console.log(`ALORS ? ${util.inspect(response.data)}`);
-});*/
-
-//https://${CHALLONGE_USER_NAME}:${CHALLONGE_API_KEY}@api.challonge.com/v1/
-/*const challonge_api = axios.create({
-  baseURL: `https://api.challonge.com/v2/`,
-  timeout: 10000,
-  headers: {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-  "Access-Control-Allow-Headers": "Authorization",
-  "Authorization": `${CHALLONGE_API_KEY}`,
-  }
-});
-
-const config = {
-  headers:{
-    "Content-Type": "application/vnd.api+json",
-    "Accept": "application/json",
-    "Authorization-Type": "v1",
-    "Authorization": `${CHALLONGE_API_KEY}`,
-  }
-};
-
-
 class Tournament{
   constructor(id,name){
     this.id = id;
@@ -119,22 +82,43 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
-/*async function tournamentList(res,tournament){
+async function tournamentList(res,tournament){
   try{
-      let response = (await challonge_api.get(`/tournaments.json`,config))
-      console.log(`ALORS ? ${util.inspect(response)}`)
-          return res.send({
+    challonge_oauth_api.post(
+      "/oauth/token",
+      {
+        client_secret:CHALLONGE_CLIENT_SECRET,
+        client_id:CHALLONGE_CLIENT_ID,
+        grant_type:"client_credentials",
+        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      },
+    ).then(responseee => {
+      console.log(`ALORS1 ? ${util.inspect(responseee.data)}`)
+          challonge_oauth_api.get("/v2/application/tournaments.json",{
+            headers:{
+              "Authorization-Type":"v2",
+              'Authorization': 'Bearer ' +responseee.data.access_token,
+              "Content-Type":"application/vnd.api+json",
+              "Accept":"application/json"
+            }
+          }
+        ).then(responsee => {
+              console.log(`ALORS2 ? ${util.inspect(responsee.data.data)}`)
+              return res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-              data: {
-              content: `tournament ${tournament.name} list`,
-              flags: 64,
-            },
-          });
+               data: {
+                  content: `Tournois: ${responsee.data.data.map(tournoi => tournoi.id)}`,
+                  flags: 64,
+                },
+              });
+            })
+      });
+
 
       }catch(e){
         console.log(`MY tournamentList ERROR ${e}`)
       }
-}*/
+}
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
@@ -156,35 +140,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       }
     }
     if(interaction.data.name == 'test'){
-      challonge_oauth_api.post(
-        "/oauth/token",
-        {
-          client_secret:CHALLONGE_CLIENT_SECRET,
-          client_id:CHALLONGE_CLIENT_ID,
-          grant_type:"client_credentials",
-          scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-        },
-      ).then(responseee => {
-        console.log(`ALORS1 ? ${util.inspect(responseee.data)}`)
-            challonge_oauth_api.get("/v2/application/tournaments.json",{
-              headers:{
-                "Authorization-Type":"v2",
-                'Authorization': 'Bearer ' +responseee.data.access_token,
-                "Content-Type":"application/vnd.api+json",
-                "Accept":"application/json"
-              }
-            }
-          ).then(responsee => {
-                console.log(`ALORS2 ? ${util.inspect(responsee.data.data)}`)
-                return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                 data: {
-                    content: `Tournois: ${responsee.data.data.map(tournoi => tournoi.id)}`,
-                    flags: 64,
-                  },
-                });
-              })
-        });
+
     }
     if(interaction.data.name == 'cammy'){
       return sendMessageForSpecificRole(res,'1105040765186474015');
@@ -500,7 +456,7 @@ app.get('/register_commands', async (req,res) => {
       `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
       slash_commands
     )
-    //console.log(discord_response.data)
+    console.log(discord_response.data)
     return res.send('commands have been registered')
   }catch(e){
     console.error(e.code)
