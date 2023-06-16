@@ -440,7 +440,7 @@ app.get('/register_commands', async (req,res) => {
         ).then(responsee => {
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
                 slash_commands.push({
-                  "name": `${tournament}_register`,
+                  "name": `${tournament.toLowerCase()}_register`,
                   "description":"je m'inscris au tournoi",
                   "options": []
                 },
