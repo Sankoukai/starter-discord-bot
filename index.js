@@ -49,7 +49,7 @@ const challonge_oauth_api = axios.create({
 async function sendMessageForSpecificRole(res,id){
   try{
      let response = (await discord_api.get(`/guilds/${GUILD_ID}/members?limit=1000`))
-
+          console.log(util.inspect(response.data))
           return res.send({
 
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -445,7 +445,7 @@ app.get('/register_commands', async (req,res) => {
       `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
       slash_commands
     )
-    console.log(discord_response.data)
+    //console.log(discord_response.data)
     return res.send('commands have been registered')
   }catch(e){
     console.error(e.code)
