@@ -195,7 +195,7 @@ const slash_commands = [
 
 function addTournamentCommand(command){
     console.log(`slash ? ${slash_commands} -- ${command}`)
-    slash_commands.push(command)
+    //slash_commands.push(command)
 }
 
 async function sendMessageForSpecificRole(res,id){
