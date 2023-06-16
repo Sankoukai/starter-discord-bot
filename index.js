@@ -45,7 +45,7 @@ const challonge_oauth_api = axios.create({
   }
 });
 
-const slash_commands = [
+var slash_commands = [
 {
   "name": "sffcount",
   "description": "Retourne le nombre de membres SFF!",
