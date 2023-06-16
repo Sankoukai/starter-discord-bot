@@ -454,7 +454,7 @@ app.get('/register_commands', async (req,res) => {
                   "name": `${t.name}_list`,
                   "description":"voir la liste des participants",
                   "options": []
-                }*/)
+                }*/);
               })
               //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
 
