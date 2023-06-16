@@ -439,7 +439,6 @@ app.get('/register_commands', async (req,res) => {
           }
         ).then(responsee => {
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                    console.log(`slash_commands.push => ${tournament}`)
                 slash_commands.push({
                   "name": `${tournament}_register`,
                   "description":"je m'inscris au tournoi",
@@ -456,6 +455,8 @@ app.get('/register_commands', async (req,res) => {
                   "options": []
                 }*/)
               })
+              console.log(`slash_commands.push => ${slash_commands}`)
+
             })
       }).then(r => {
             // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
