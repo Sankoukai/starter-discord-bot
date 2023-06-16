@@ -148,9 +148,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
             client_secret:CHALLONGE_CLIENT_SECRET,
             client_id:CHALLONGE_CLIENT_ID,
             grant_type:"client_credentials",
+            scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
           },
         ).then(response => {
-            console.log(`ALORS ? ${util.inspect(response.data)}`);
+            console.log(`ALORS ? ${response.data.access_token}`);
           });
         let response = (await discord_api.get(`/guilds/${GUILD_ID}?with_counts=true`))
           return res.send({
