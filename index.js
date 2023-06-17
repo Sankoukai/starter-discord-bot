@@ -206,7 +206,15 @@ async function addPlayer(tournament,member,res){
       scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
     },
   ).then(responseee => {
-        challonge_oauth_api.get(`/v2/tournaments/${tournament}/participants.json`,{
+        challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
+          {
+            "type": "Participant",
+            "attributes": {
+              "username": "corneldm",
+              "name": "hi there"
+            }
+          },
+          {
           headers:{
             "Authorization-Type":"v2",
             'Authorization': 'Bearer ' +responseee.data.access_token,
@@ -215,7 +223,7 @@ async function addPlayer(tournament,member,res){
           }
         }
       )}).then( response => {
-        console.log(util.inspect(response))
+        console.log(`addplayer response ? ${util.inspect(response)}`))
       })
 }
 
