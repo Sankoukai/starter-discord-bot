@@ -207,6 +207,7 @@ async function addPlayer(tournament,member,res){
         scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
       },
     ))
+    console.log(`addplayer token ok`)
     let responseAddPlayer = await(
           challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
             {
@@ -236,7 +237,7 @@ async function addPlayer(tournament,member,res){
     });
   }
   catch(e){
-    console.log(`addplayer error ? ${e} ${util.inspect(responseAddPlayer)}`)
+    console.log(`addplayer error ? ${e} `)
     return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
      data: {
