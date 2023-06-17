@@ -267,7 +267,7 @@ async function registerCommands(res){
         ).then(responsee => {
               responsee.data.data.map(tournoi => tournoi.id).forEach(t => {
                 addTournamentCommand(
-                  ${t.toLowerCase()},
+                  t.toLowerCase(),
                   {
                     "name": `${t.toLowerCase()}_register`,
                     "description":"je m'inscris au tournoi",
