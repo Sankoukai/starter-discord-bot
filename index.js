@@ -236,7 +236,7 @@ async function addPlayer(tournament,member,res){
     });
   }
   catch(e){
-    console.log(`addplayer error ? ${e} $${util.inspect(responseAddPlayer)}`)
+    console.log(`addplayer error ? ${e} ${util.inspect(responseAddPlayer)}`)
     return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
      data: {
