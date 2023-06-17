@@ -198,33 +198,33 @@ function addTournamentCommand(name,command){
 
 async function addPlayer(tournament,member,res){
   try{
-  let response = await challonge_oauth_api.post(
-    "/oauth/token",
-    {
-      client_secret:CHALLONGE_CLIENT_SECRET,
-      client_id:CHALLONGE_CLIENT_ID,
-      grant_type:"client_credentials",
-      scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-    },
-  ).then(responseee => {
-        challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
-          {
-            "type": "Participant",
-            "attributes": {
-              "username": "corneldm",
-              "name": "hi there"
+    let response = (await (challonge_oauth_api.post(
+      "/oauth/token",
+      {
+        client_secret:CHALLONGE_CLIENT_SECRET,
+        client_id:CHALLONGE_CLIENT_ID,
+        grant_type:"client_credentials",
+        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      },
+    ).then(responseee => {
+          challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
+            {
+              "type": "Participant",
+              "attributes": {
+                "username": "corneldm",
+                "name": "hi there"
+              }
+            },
+            {
+            headers:{
+              "Authorization-Type":"v2",
+              'Authorization': 'Bearer ' +responseee.data.access_token,
+              "Content-Type":"application/vnd.api+json",
+              "Accept":"application/json"
             }
-          },
-          {
-          headers:{
-            "Authorization-Type":"v2",
-            'Authorization': 'Bearer ' +responseee.data.access_token,
-            "Content-Type":"application/vnd.api+json",
-            "Accept":"application/json"
           }
-        }
-      )
-    })
+        )
+      })))
     console.log(`addplayer response ? ${util.inspect(response)}`)
     return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
