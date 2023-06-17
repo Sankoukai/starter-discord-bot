@@ -223,7 +223,7 @@ async function addPlayer(tournament,member,res){
           }
         }
       )}).then( response => {
-        console.log(`addplayer response ? ${util.inspect(response)}`))
+        console.log(`addplayer response ? ${util.inspect(response)}`)
       })
 }
 
