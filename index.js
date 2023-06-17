@@ -206,6 +206,7 @@ async function addPlayer(tournament,member,res){
       scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
     },
   ).then(responseee => {
+    console.log(`addplayer token response ? ${util.inspect(responseee)}`)
         challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
           {
             "type": "Participant",
@@ -222,9 +223,10 @@ async function addPlayer(tournament,member,res){
             "Accept":"application/json"
           }
         }
-      )}).then( response => {
+      ).then( response => {
         console.log(`addplayer response ? ${util.inspect(response)}`)
       })
+    })
 }
 
 async function sendMessageForSpecificRole(res,id){
