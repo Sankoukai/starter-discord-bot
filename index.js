@@ -188,9 +188,35 @@ let slash_commands = [
 },
 ];
 
-function addTournamentCommand(command){
-    console.log(`slash ? ${slash_commands} -- ${command}`)
+let tournaments = []
+
+function addTournamentCommand(name,command){
+    console.log(`addTournamentCommand ?  -- ${util.inspect(command)}`)
     slash_commands.push(command)
+    tournaments.push(name)
+}
+
+fun addPlayer(tournament,member,res){
+  challonge_oauth_api.post(
+    "/oauth/token",
+    {
+      client_secret:CHALLONGE_CLIENT_SECRET,
+      client_id:CHALLONGE_CLIENT_ID,
+      grant_type:"client_credentials",
+      scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+    },
+  ).then(responseee => {
+        challonge_oauth_api.get(`/v2/tournaments/${tournament}/participants.json`,{
+          headers:{
+            "Authorization-Type":"v2",
+            'Authorization': 'Bearer ' +responseee.data.access_token,
+            "Content-Type":"application/vnd.api+json",
+            "Accept":"application/json"
+          }
+        }
+      )}).then( response => {
+        console.log(util.inspect(response))
+      }
 }
 
 async function sendMessageForSpecificRole(res,id){
@@ -217,35 +243,19 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
-async function challongeGetToken(){
-  return challonge_oauth_api.post(
-    "/oauth/token",
-    {
-      client_secret:CHALLONGE_CLIENT_SECRET,
-      client_id:CHALLONGE_CLIENT_ID,
-      grant_type:"client_credentials",
-      scope: 'me tournaments:read matches:read attachments:read participants:read participants:write stations:read application:manage'
-    },
-  )
-}
 
-async function challongeGetTournamentList(){
-  return challongeGetToken().then(responseee => {
-          challonge_oauth_api.get("/v2/application/tournaments.json",{
-            headers:{
-              "Authorization-Type":"v2",
-              'Authorization': 'Bearer ' +responseee.data.access_token,
-              "Content-Type":"application/vnd.api+json",
-              "Accept":"application/json"
-            }
-          }
-        )
-      })
-}
-
-async function addPlayer(res,tournament){
-  try{
-    challongeGetToken().then(responseee => {
+async function registerCommands(res){
+  try
+  {
+    challonge_oauth_api.post(
+      "/oauth/token",
+      {
+        client_secret:CHALLONGE_CLIENT_SECRET,
+        client_id:CHALLONGE_CLIENT_ID,
+        grant_type:"client_credentials",
+        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      },
+    ).then(responseee => {
           challonge_oauth_api.get("/v2/application/tournaments.json",{
             headers:{
               "Authorization-Type":"v2",
@@ -255,28 +265,8 @@ async function addPlayer(res,tournament){
             }
           }
         ).then(responsee => {
-              console.log(`Tournaments ${util.inspect(responsee.data.data)}`)
-              return res.send({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-               data: {
-                  content: `Tournois: ${responsee.data.data.map(tournoi => tournoi.id)}`,
-                  flags: 64,
-                },
-              });
-            })
-      });
-    }catch(e){
-      console.log(`MY tournamentList ERROR ${e}`)
-    }
-}
-
-async function registerCommands(res){
-  try
-  {
-    challongeGetTournamentList().then(responsee => {
-      console.log(util.inspect(responsee))
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                addTournamentCommand(
+                addTournamentCommand(${tournament.toLowerCase()},
                   {
                     "name": `${tournament.toLowerCase()}_register`,
                     "description":"je m'inscris au tournoi",
@@ -316,6 +306,7 @@ async function registerCommands(res){
         return res.send('commands have been registered')
       })
       });
+  })
 }catch(e){
     console.error(e.code)
     console.error(e.response?.data)
@@ -425,6 +416,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     }
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
+    }
+    tournaments.forEach{ tournament =>
+      if(interaction.data.name == `${tournament}_register`){
+        return addPlayer(tournament,interaction.member,res)
+      }
     }
 
     /*tournaments.forEach(tournament => {
