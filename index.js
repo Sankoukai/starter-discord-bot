@@ -262,7 +262,7 @@ async function tournamentList(res,tournament){
     }
 }
 
-function registerCommands(res){
+async function registerCommands(res){
   try
   {
     challonge_oauth_api.post(
