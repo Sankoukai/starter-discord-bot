@@ -222,17 +222,21 @@ async function sendMessageForSpecificRole(res,id){
       }
 }
 
+async function challongeGetToken(){
+  return challonge_oauth_api.post(
+    "/oauth/token",
+    {
+      client_secret:CHALLONGE_CLIENT_SECRET,
+      client_id:CHALLONGE_CLIENT_ID,
+      grant_type:"client_credentials",
+      scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+    },
+  )
+}
+
 async function tournamentList(res,tournament){
   try{
-    challonge_oauth_api.post(
-      "/oauth/token",
-      {
-        client_secret:CHALLONGE_CLIENT_SECRET,
-        client_id:CHALLONGE_CLIENT_ID,
-        grant_type:"client_credentials",
-        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-      },
-    ).then(responseee => {
+    challongeGetToken().then(responseee => {
           challonge_oauth_api.get("/v2/application/tournaments.json",{
             headers:{
               "Authorization-Type":"v2",
