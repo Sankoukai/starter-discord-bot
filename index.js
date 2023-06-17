@@ -319,7 +319,6 @@ async function registerCommands(res){
         return res.send('commands have been registered')
       })
       });
-  })
 }catch(e){
     console.error(e.code)
     console.error(e.response?.data)
