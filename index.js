@@ -241,7 +241,7 @@ async function challongeGetTournamentList(){
             }
           }
         )
-      });
+      })
     }catch(e){
       console.log(`MY tournamentList ERROR ${e}`)
     }
