@@ -230,8 +230,7 @@ async function challongeGetToken(){
 }
 
 async function challongeGetTournamentList(){
-  try{
-    return challongeGetToken().then(responseee => {
+  return challongeGetToken().then(responseee => {
           challonge_oauth_api.get("/v2/application/tournaments.json",{
             headers:{
               "Authorization-Type":"v2",
@@ -242,9 +241,6 @@ async function challongeGetTournamentList(){
           }
         )
       })
-    }catch(e){
-      console.log(`MY tournamentList ERROR ${e}`)
-    }
 }
 
 async function addPlayer(res,tournament){
