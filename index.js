@@ -196,7 +196,7 @@ function addTournamentCommand(name,command){
     tournaments.push(name)
 }
 
-fun addPlayer(tournament,member,res){
+async function addPlayer(tournament,member,res){
   challonge_oauth_api.post(
     "/oauth/token",
     {
