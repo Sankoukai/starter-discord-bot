@@ -198,7 +198,7 @@ function addTournamentCommand(name,command){
 
 async function addPlayer(tournament,member,res){
   try{
-    let responseAddPlayer = (await (challonge_oauth_api.post(
+    let responseToken = await (challonge_oauth_api.post(
       "/oauth/token",
       {
         client_secret:CHALLONGE_CLIENT_SECRET,
@@ -206,7 +206,8 @@ async function addPlayer(tournament,member,res){
         grant_type:"client_credentials",
         scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
       },
-    ).then(responseee => {
+    ))
+    let responseAddPlayer = await(
           challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
             {
               "type": "Participant",
@@ -224,7 +225,7 @@ async function addPlayer(tournament,member,res){
             }
           }
         )
-      })));
+      )
     console.log(`addplayer response ? ${util.inspect(responseAddPlayer)}`)
     return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
