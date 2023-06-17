@@ -216,7 +216,7 @@ async function addPlayer(tournament,member,res){
         }
       )}).then( response => {
         console.log(util.inspect(response))
-      }
+      })
 }
 
 async function sendMessageForSpecificRole(res,id){
