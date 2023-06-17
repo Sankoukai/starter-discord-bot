@@ -191,6 +191,11 @@ let slash_commands = [
   "description": "Retourne une liste de Sensei",
   "options": []
 },
+{
+  "name": "register_commands",
+  "description": "register_commands",
+  "options": []
+},
 ];
 
 function addTournamentCommand(command){
@@ -233,7 +238,6 @@ async function tournamentList(res,tournament){
         scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
       },
     ).then(responseee => {
-      console.log(`ALORS1 ? ${util.inspect(responseee.data)}`)
           challonge_oauth_api.get("/v2/application/tournaments.json",{
             headers:{
               "Authorization-Type":"v2",
@@ -253,11 +257,79 @@ async function tournamentList(res,tournament){
               });
             })
       });
+    }catch(e){
+      console.log(`MY tournamentList ERROR ${e}`)
+    }
+}
+
+function registerCommands(res){
+  try
+  {
+    challonge_oauth_api.post(
+      "/oauth/token",
+      {
+        client_secret:CHALLONGE_CLIENT_SECRET,
+        client_id:CHALLONGE_CLIENT_ID,
+        grant_type:"client_credentials",
+        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      },
+    ).then(responseee => {
+          challonge_oauth_api.get("/v2/application/tournaments.json",{
+            headers:{
+              "Authorization-Type":"v2",
+              'Authorization': 'Bearer ' +responseee.data.access_token,
+              "Content-Type":"application/vnd.api+json",
+              "Accept":"application/json"
+            }
+          }
+        ).then(responsee => {
+              responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
+                addTournamentCommand(
+                  {
+                    "name": `${tournament.toLowerCase()}_register`,
+                    "description":"je m'inscris au tournoi",
+                    "options": []
+                  }
+                )
+                /*{
+                  "name": `${t.name}_unregister`,
+                  "description":"je me désinscris du tournoi",
+                  "options": []
+                },
+                {
+                  "name": `${t.name}_list`,
+                  "description":"voir la liste des participants",
+                  "options": []
+                }*/
+              })
+              //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
 
 
-      }catch(e){
-        console.log(`MY tournamentList ERROR ${e}`)
-      }
+
+              /*{
+                "name": "dm",
+                "description": "sends user a DM",
+                "options": []
+              }*/
+
+
+      }).then(r => {
+            // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+            console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
+        discord_api.put(
+          `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
+          slash_commands
+        ).then(responsee => {
+        //console.log(discord_response.data)
+        return res.send('commands have been registered')
+      })
+      });
+  })
+}catch(e){
+    console.error(e.code)
+    console.error(e.response?.data)
+    return res.send(`${e.code} error from discord`)
+  }
 }
 
 app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
@@ -363,6 +435,10 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
+    if(interaction.data.name == 'register_commands'){
+      return registerCommands(res);
+    }
+
     /*tournaments.forEach(tournament => {
       if(interaction.data.name == `${tournament.name}_register`){
         return res.send({
@@ -416,75 +492,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 });
 
 app.get('/register_commands', async (req,res) => {
-
-
-  try
-  {
-    challonge_oauth_api.post(
-      "/oauth/token",
-      {
-        client_secret:CHALLONGE_CLIENT_SECRET,
-        client_id:CHALLONGE_CLIENT_ID,
-        grant_type:"client_credentials",
-        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-      },
-    ).then(responseee => {
-          challonge_oauth_api.get("/v2/application/tournaments.json",{
-            headers:{
-              "Authorization-Type":"v2",
-              'Authorization': 'Bearer ' +responseee.data.access_token,
-              "Content-Type":"application/vnd.api+json",
-              "Accept":"application/json"
-            }
-          }
-        ).then(responsee => {
-              responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                addTournamentCommand(
-                  {
-                    "name": `${tournament.toLowerCase()}_register`,
-                    "description":"je m'inscris au tournoi",
-                    "options": []
-                  }
-                )
-                /*{
-                  "name": `${t.name}_unregister`,
-                  "description":"je me désinscris du tournoi",
-                  "options": []
-                },
-                {
-                  "name": `${t.name}_list`,
-                  "description":"voir la liste des participants",
-                  "options": []
-                }*/
-              })
-              //console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
-
-
-
-              /*{
-                "name": "dm",
-                "description": "sends user a DM",
-                "options": []
-              }*/
-
-
-      }).then(r => {
-            // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
-            console.log(`slash_commands.push => ${util.inspect(slash_commands)}`)
-        discord_api.put(
-          `/applications/${APPLICATION_ID}/guilds/${GUILD_ID}/commands`,
-          slash_commands
-        ).then(responsee => {
-        //console.log(discord_response.data)
-        return res.send('commands have been registered')
-      })
-      });
-  })
-}catch(e){
-    console.error(e.code)
-    console.error(e.response?.data)
-    return res.send(`${e.code} error from discord`)
-  }
+  registerCommands(res)
 })
 
 
