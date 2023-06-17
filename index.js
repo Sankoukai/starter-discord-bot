@@ -274,6 +274,7 @@ async function registerCommands(res){
   try
   {
     challongeGetTournamentList().then(responsee => {
+      console.log(util.inspect(responsee.data))
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
                 addTournamentCommand(
                   {
