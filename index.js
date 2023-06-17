@@ -419,6 +419,7 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
     tournaments.forEach( tournament => {
+      console.log(`test register ${interaction.data.name} ? ${tournament}`)
       if(interaction.data.name == `${tournament}_register`){
         return addPlayer(tournament,interaction.member,res)
       }
