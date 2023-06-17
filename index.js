@@ -52,11 +52,6 @@ let slash_commands = [
   "options": []
 },
 {
-  "name": "test",
-  "description": "test",
-  "options": []
-},
-{
   "name": "cammy",
   "description": "Retourne une liste de joueur jouant Cammy",
   "options": []
@@ -229,12 +224,30 @@ async function challongeGetToken(){
       client_secret:CHALLONGE_CLIENT_SECRET,
       client_id:CHALLONGE_CLIENT_ID,
       grant_type:"client_credentials",
-      scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
+      scope: 'me tournaments:read matches:read attachments:read participants:read participants:write stations:read application:manage'
     },
   )
 }
 
-async function tournamentList(res,tournament){
+async function challongeGetTournamentList(){
+  try{
+    return challongeGetToken().then(responseee => {
+          challonge_oauth_api.get("/v2/application/tournaments.json",{
+            headers:{
+              "Authorization-Type":"v2",
+              'Authorization': 'Bearer ' +responseee.data.access_token,
+              "Content-Type":"application/vnd.api+json",
+              "Accept":"application/json"
+            }
+          }
+        )
+      });
+    }catch(e){
+      console.log(`MY tournamentList ERROR ${e}`)
+    }
+}
+
+async function addPlayer(res,tournament){
   try{
     challongeGetToken().then(responseee => {
           challonge_oauth_api.get("/v2/application/tournaments.json",{
@@ -264,24 +277,7 @@ async function tournamentList(res,tournament){
 async function registerCommands(res){
   try
   {
-    challonge_oauth_api.post(
-      "/oauth/token",
-      {
-        client_secret:CHALLONGE_CLIENT_SECRET,
-        client_id:CHALLONGE_CLIENT_ID,
-        grant_type:"client_credentials",
-        scope: 'me tournaments:read matches:read attachments:read participants:write stations:read application:manage'
-      },
-    ).then(responseee => {
-          challonge_oauth_api.get("/v2/application/tournaments.json",{
-            headers:{
-              "Authorization-Type":"v2",
-              'Authorization': 'Bearer ' +responseee.data.access_token,
-              "Content-Type":"application/vnd.api+json",
-              "Accept":"application/json"
-            }
-          }
-        ).then(responsee => {
+    challongeGetTournamentList().then(responsee => {
               responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
                 addTournamentCommand(
                   {
