@@ -35,7 +35,7 @@ const discord_api = axios.create({
 
 const challonge_oauth_api = axios.create({
   baseURL: 'https://api.challonge.com',
-  timeout: 3000,
+  timeout: 10000,
   headers: {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
