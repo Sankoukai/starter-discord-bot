@@ -219,7 +219,7 @@ async function addPlayer(tournament,member,res){
             {
             headers:{
               "Authorization-Type":"v2",
-              'Authorization': 'Bearer ' +responseee.data.access_token,
+              'Authorization': 'Bearer ' +responseToken.data.access_token,
               "Content-Type":"application/vnd.api+json",
               "Accept":"application/json"
             }
