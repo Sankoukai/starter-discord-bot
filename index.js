@@ -225,11 +225,25 @@ async function addPlayer(tournament,member,res){
         }
       ).then( response => {
         console.log(`addplayer response ? ${util.inspect(response)}`)
+        return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+         data: {
+            content: `OK! ${member} ${reponse}`,
+            flags: 64,
+          },
+        });
       })
     })
   }
   catch(e){
     console.log(`addplayer error ? ${e}`)
+    return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+     data: {
+        content: `ERROR ${member}`,
+        flags: 64,
+      },
+    });
   }
 }
 
