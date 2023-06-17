@@ -210,21 +210,19 @@ async function addPlayer(tournament,member,res){
     console.log(`addplayer token ok`)
     let responseAddPlayer = await(
           challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
-            {
-              "type": "Participant",
-              "attributes": {
-                "username": "corneldm",
-                "name": "hi there"
-              }
-            },
-            {
-            headers:{
+          {
               "Authorization-Type":"v2",
               'Authorization': 'Bearer ' +responseToken.data.access_token,
               "Content-Type":"application/vnd.api+json",
               "Accept":"application/json"
+          },
+          {
+            "type": "Participant",
+            "attributes": {
+              "username": "corneldm",
+              "name": "hi there"
             }
-          }
+          },
         )
       )
     console.log(`addplayer response ? ${util.inspect(responseAddPlayer)}`)
