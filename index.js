@@ -208,10 +208,13 @@ async function addPlayer(tournament,member,res){
     let responseAddPlayer = await(
           challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
           {
-            "type": "Participant",
-            "attributes": {
-              "username": "corneldm",
-              "name": "hi there"
+            "data":{
+              "type": "Participant",
+              "attributes": {
+                "username": `${member.user.global_name}`,
+                "name": `${member.user.global_name}`,
+                "misc": `${member.user.id}`,
+              }
             }
           },
           {
