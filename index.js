@@ -265,10 +265,11 @@ async function registerCommands(res){
             }
           }
         ).then(responsee => {
-              responsee.data.data.map(tournoi => tournoi.id).forEach(tournament => {
-                addTournamentCommand(${tournament.toLowerCase()},
+              responsee.data.data.map(tournoi => tournoi.id).forEach(t => {
+                addTournamentCommand(
+                  ${t.toLowerCase()},
                   {
-                    "name": `${tournament.toLowerCase()}_register`,
+                    "name": `${t.toLowerCase()}_register`,
                     "description":"je m'inscris au tournoi",
                     "options": []
                   }
