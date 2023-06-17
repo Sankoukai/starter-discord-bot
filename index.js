@@ -418,10 +418,11 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
     }
-    tournaments.forEach( tournament =>
+    tournaments.forEach( tournament => {
       if(interaction.data.name == `${tournament}_register`){
         return addPlayer(tournament,interaction.member,res)
       }
+    }
     )
 
     /*tournaments.forEach(tournament => {
