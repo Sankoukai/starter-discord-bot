@@ -191,11 +191,6 @@ let slash_commands = [
   "description": "Retourne une liste de Sensei",
   "options": []
 },
-{
-  "name": "register_commands",
-  "description": "register_commands",
-  "options": []
-},
 ];
 
 function addTournamentCommand(command){
@@ -434,9 +429,6 @@ app.post('/interactions', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     }
     if(interaction.data.name == 'sensei'){
       return sendMessageForSpecificRole(res,'1105529280626172124');
-    }
-    if(interaction.data.name == 'register_commands'){
-      return registerCommands(res);
     }
 
     /*tournaments.forEach(tournament => {
