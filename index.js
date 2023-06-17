@@ -211,10 +211,12 @@ async function addPlayer(tournament,member,res){
     let responseAddPlayer = await(
           challonge_oauth_api.post(`/v2/tournaments/${tournament}/participants.json`,
           {
+            headers:{
               "Authorization-Type":"v2",
               'Authorization': 'Bearer ' +responseToken.data.access_token,
               "Content-Type":"application/vnd.api+json",
               "Accept":"application/json"
+            }
           },
           {
             "type": "Participant",
